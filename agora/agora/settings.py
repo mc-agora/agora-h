@@ -56,7 +56,7 @@ ROOT_URLCONF = 'agora.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'agora', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
