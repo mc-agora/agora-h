@@ -119,8 +119,14 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+
+#  웹 페이지에서 사용할 정적 파일의 최상위 URL 경로입니다.
+#  이 최상위 경로 자체는 실제 파일이나 디렉터리가 아니며, URL로만 존재하는 단위입니다.
+#  그래서 이용자 마음대로 정해도 무방합니다
 STATIC_URL = '/static/'
 
+# 개발 단계에서 사용하는 정적 파일이 위치한 경로들을 지정하는 설정 항목
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
