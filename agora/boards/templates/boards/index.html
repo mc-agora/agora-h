@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<br><br><br><br><br>
-    <a href="/boards/new/">[글 작성]</a>
+
+    <br><br><br><br>
+    {% for board in boards %}
+        <p>{{ board.pk }}번 글</p>
+        <p>제목 : <a href="/boards/{{ board.pk }}/">{{ board.title }}</a></p>
+        <hr>
+    {% endfor %}
+    <a href="/boards/new/"><input type="button" value="글 작성"></a>
 {% endblock %}
