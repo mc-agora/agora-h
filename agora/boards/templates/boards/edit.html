@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+    <br><br><br><br>
+    <hr>
+    <form action="/boards/{{ board.pk }}/update/" method="post">
+        {% csrf_token %}
+        <label for="title">제목</label><br>
+        <input type="text" name="title" id="title" value="{{ board.title }}"><br>
+        <label for="content">내용</label><br>
+        <textarea name="content" id="content" cols="30" rows="10">{{ board.content }}</textarea><br>
+        <input type="submit" value="수정">
+        <a href="/boards/"><input type="button" value="메인"></a>
+    </form>
+
+{% endblock %}
