@@ -13,23 +13,40 @@
 </head>
 <body>
     <header>
-        <div class="wrapper">
+        <style type="text/css">
+            .navbar-left>img {
+               height: 45px;
+               width: 45px;
+               margin: 15px;
 
-            <h1>AGORA</h1>
-            <nav>
 
-                <ul class="menu">
-                    <li><img src="{% static 'images/logo.png' %}" alt="테스트용 로고입니다" width="100px" height="100px"></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="/boards/">게시판</a></li>
-                    <li><a href="">토론장</a></li>
-                    <li><a href="">완료된법안</a></li>
-                    <li><a href="">MyPage</a></li>
-                    <li><a href="">기타</a></li>
-                    <li><a href="">소개</a></li>
-                </ul>
-            </nav>
-        </div>
+               /* probably not needed anymore, but doesn't hurt */
+               -o-object-fit: contain/2;
+               object-fit: contain/2;
+
+            }
+            .container {
+            width: 10;
+            padding-right: 5;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            }
+        </style>
+
+        <nav class="container">
+            <a href="#" class="navbar-left"><img src="{% static 'images/logo.png' %}" width="100px" height="auto" align="left" prefix="True"></a>
+            <h1 prefix="Ture">AGORA</h1>
+            <div class="menu" prefix="True">
+                <li><a href="#" >Home</a></li>
+                <li><a href="/boards/">게시판</a></li>
+                <li><a href="">토론장</a></li>
+                <li><a href="">완료된법안</a></li>
+                <li><a href="">MyPage</a></li>
+                <li><a href="">기타</a></li>
+                <li><a href="">소개</a></li>
+            </div>
+        </nav>
     </header>
 
     <div class="container">
