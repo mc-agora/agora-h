@@ -3,7 +3,7 @@
 {% block body %}
     <br><br><br><br>
     <hr>
-    <form action="/boards/create/" method="post">
+    <form action="" method="post">
         {% csrf_token %}  <!-- POST 방식을 쓰기 위해서 필요하다-->
 
         <label for="title">제목</label><br>    <!-- label의 for와 input의 id는 같아야 한다. -->
@@ -11,7 +11,7 @@
         <label for="content">내용</label><br>
         <textarea name="content" id="content" cols="30" rows="10" placeholder="내용을 입력하세요"></textarea><br>
         <input type="submit" value="작성">
-        <a href="/boards/"><input type="button" value="메인"></a>
+        <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>
     </form>
 
 {% endblock %}

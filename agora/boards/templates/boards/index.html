@@ -8,8 +8,8 @@
 <hr>
     {% for board in boards %}
         <p>{{ board.pk }}번 글</p>
-        <p>제목 : <a href="/boards/{{ board.pk }}/">{{ board.title }}</a></p>
+        <p>제목 : <a href="{% url 'boards:detail' board.pk %}">{{ board.title }}</a></p>
         <hr>
     {% endfor %}
-    <a href="/boards/new/"><input type="button" value="글 작성"></a>
+    <a href="{% url 'boards:new' %}"><input type="button" value="글 작성"></a>
 {% endblock %}
