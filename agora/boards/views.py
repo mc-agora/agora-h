@@ -38,3 +38,4 @@ def update(request, pk):
     board.content = request.POST.get('content')
     board.save()
     return redirect(f'/boards/{board.pk}/')
+
