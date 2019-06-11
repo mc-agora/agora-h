@@ -6,8 +6,31 @@ a{text-decoration: none;}
 .clearfix{content: ''; display: block; clear: both;}
 
 header{height: 75px; background-color:#000000; border: 1px solid #253342; position: fixed; width: 100%; z-index: 9999; top:0; left: 0;}
-h1{color: white; line-height:75px; float:left;}
+h1{color: white; line-height:75px;}
 
 .menu{float:right;}
 .menu li{float:left;}
 .menu a{line-height: 75px; color:white; padding: 0 15px; display: block;}
+
+.navbar-left>img {
+   height: 45px;
+   width: 45px;
+   margin: 15px;
+
+
+   /* probably not needed anymore, but doesn't hurt */
+   -o-object-fit: contain/2;
+   object-fit: contain/2;
+
+}
+.container {
+    width: 10;
+    padding-right: 5;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#back {
+    background-repeat: no-repeat;
+    background-size: cover;
+}

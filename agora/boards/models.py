@@ -12,6 +12,16 @@ class Board(models.Model):
         return f'{self.id}번글 - {self.title} : {self.content}'
 
 
+<<<<<<< HEAD
+class DjangoBoard(models.Model):
+    subject = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=50, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    mail = models.CharField(max_length=50, blank=True)
+    memo = models.CharField(max_length=200, blank=True)
+    hits = models.IntegerField(null=True, blank=True)
+=======
 # 댓글 달기를 위한 class 선언
 class Comment(models.Model):
     content = models.CharField(max_length=200)
@@ -21,3 +31,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'<Board{self.board_id}: Comment({self.id} - {self.content})>'
+>>>>>>> 9f43753a3e16e038989e28ea992d0563c821ece3

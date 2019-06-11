@@ -42,6 +42,15 @@ def edit(request, board_pk):
         context = {'board': board}
         return render(request, 'boards/edit.html', context)
 
+<<<<<<< HEAD
+def update(request, pk):
+    board = Board.objects.get(pk=pk)
+    board.title = request.POST.get('title')
+    board.content = request.POST.get('content')
+    board.save()
+    return redirect(f'/boards/{board.pk}/')
+
+=======
 def comments_create(request, board_pk):
     board = Board.objects.get(pk=board_pk)
     if request.method == 'POST':
@@ -52,3 +61,4 @@ def comments_create(request, board_pk):
         return redirect('boards:detail', board.pk)
     else:
         return redirect('boards:detail', board.pk)
+>>>>>>> 9f43753a3e16e038989e28ea992d0563c821ece3

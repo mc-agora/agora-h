@@ -6,10 +6,41 @@
 
 <h1 class="text-center" style="color:red">게시판</h1><br><br><br>
 <hr>
+<<<<<<< HEAD
+
+    <table class="table table-hover" bgcolor="Cornsilk ">
+        <thead>
+            <tr>
+                <th class="text-center">번호</th>
+                <th class="text-center">제목</th>
+                <th class="text-center">날짜</th>
+                <th class="text-center">수정날짜</th>
+            </tr>
+        </thead>
+        {% for board in boards %}
+        <tbody>
+        <tr>
+
+
+
+            <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.id}}</a></td>
+            <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.title}}</a></td>
+            <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.created_at}}</a></td>
+            <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.updated_at}}</a></td>
+
+        </tr>
+
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <a href="/boards/new/"><input type="button" value="글 작성"></a>
+=======
     {% for board in boards %}
         <p>{{ board.pk }}번 글</p>
         <p>제목 : <a href="{% url 'boards:detail' board.pk %}">{{ board.title }}</a></p>
         <hr>
     {% endfor %}
     <a href="{% url 'boards:new' %}"><input type="button" value="글 작성"></a>
+>>>>>>> 9f43753a3e16e038989e28ea992d0563c821ece3
 {% endblock %}
