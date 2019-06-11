@@ -41,8 +41,38 @@
 
 
     <hr>
+<<<<<<< HEAD
 
     <a href="/boards/"><input type="button" value="메인"></a>
     <a href="/boards/{{ board.pk }}/edit/"><input type="button" value="수정"></a>
     <a href="/boards/{{ board.pk }}/delete/"><input type="button" value="삭제"></a>
+=======
+    <h2>{{ board.pk }}번 글</h2>
+    <p>글 제목 : {{ board.title }}</p>
+    <p>글 내용 : {{ board.content }}</p>
+    <p>생성시간 : {{ board.created_at }}</p>
+    <p>수정시간 : {{ board.updated_at }}</p>
+    <hr>
+
+    <form action=" {% url 'boards:comments' board.pk %}" method="post">
+        {% csrf_token %}
+        <label for="content">댓글</label>
+        <input type="text" name="content" id="content">
+        <input type="submit" value="댓글작성">
+    </form>
+
+    <hr>
+        <p><b>댓글 목록</b></p>
+        {% for comment in comments %}
+            <li>{{ comment.content }}</li>
+        {% endfor %}
+    <hr>
+
+    <form action="{% url 'boards:delete' board.pk %}" method="post">
+        {% csrf_token %}
+        <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>
+        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
+        <input type="submit" value="삭제">
+    </form>
+>>>>>>> 9f43753a3e16e038989e28ea992d0563c821ece3
 {% endblock%}
