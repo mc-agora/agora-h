@@ -1,0 +1,13 @@
+{% extends 'base.html '%}
+
+{% block body %}
+<h1 class="text-center">Comment Edit</h1>
+<hr>
+<form action="{% url 'boards:comments_edit' comment.board.id comment.pk %}" method="POST">
+    {% csrf_token %}
+    댓글 수정: <input type="text" name="content" value="{{ comment.content }} ">
+    <input type="submit" value="댓글 수정">
+</form>
+
+{% endblock %}
+
