@@ -42,23 +42,34 @@ def edit(request, board_pk):
         context = {'board': board}
         return render(request, 'boards/edit.html', context)
 
-<<<<<<< HEAD
-def update(request, pk):
-    board = Board.objects.get(pk=pk)
-    board.title = request.POST.get('title')
-    board.content = request.POST.get('content')
-    board.save()
-    return redirect(f'/boards/{board.pk}/')
-
-=======
 def comments_create(request, board_pk):
     board = Board.objects.get(pk=board_pk)
     if request.method == 'POST':
         comment = Comment()
+        # comment.board = board 도 가능하나 정확한 명시가 아니다.
         comment.board_id = board.pk
         comment.content = request.POST.get('content')
         comment.save()
         return redirect('boards:detail', board.pk)
     else:
         return redirect('boards:detail', board.pk)
->>>>>>> 9f43753a3e16e038989e28ea992d0563c821ece3
+
+
+def comments_edit(request, board_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.method == 'POST':
+        comment.content = request.POST.get('content')
+        comment.save()
+        return redirect('boards:detail', board_pk)
+    else:
+        context = {'comment': comment}
+        return render(request, 'boards/comment_edit.html', context)
+
+def comments_delete(request, board_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.method =='POST':
+        comment.delete()
+        return redirect('boards:detail', board_pk)
+    else:
+        return redirect('boards:detail', board_pk)
+
