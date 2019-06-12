@@ -2,7 +2,7 @@
 
 {% block body%}
 
-<h1 class="text-center" style="color:red">게시판</h1>
+<h1 class="text-center" style="color:black">게시판</h1>
 <hr>
 
     <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
@@ -36,10 +36,11 @@
         </tbody>
     </table>
     <center>
-    <a href="{% url 'boards:edit' board.pk %}">[글 수정]</a><br>
-    <a href="{% url 'boards:index' %}">[메인 페이지]</a><br>
+
     <form action="{% url 'boards:delete' board.pk %}" method="POST">
         {% csrf_token %}
+        <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>
+        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
         <input type="submit" value="삭제">
     </form>
     </center>
@@ -48,7 +49,7 @@
     <center>
     <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
         {%csrf_token%}
-        <input type="text" name="content">
+        <input type="text" name="content" size="78">
         <input type="submit" value="댓글작성">
     </form>
     </center>
@@ -56,14 +57,14 @@
     <hr>
         <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
         {% for comment in comments %}
-            <li>{{ comment.content }}</li>
-            <a href="{% url 'boards:comments_edit' board.pk comment.pk %}">[댓글 수정]</a><br>
 
             <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
             {% csrf_token %}
-            <input type="submit" value="댓글 삭제">
-
-        {% empty %}
+            <li style="word-break:break-all;" wrap="hard">{{ comment.content }}
+            <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
+            <input type="submit" value="댓글삭제">
+            </li>
+            {% empty %}
             <p>현재 댓글이 없습니다. </p>
             </form>
         {% endfor %}

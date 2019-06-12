@@ -21,8 +21,10 @@
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
+      background-color: #F8F8FF;
+      height: auto;
+
+
     }
 
     /* Set black background color, white text and some padding */
@@ -33,10 +35,11 @@
     }
 
     /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 700px) {
       .sidenav {
         height: auto;
         padding: 15px;
+        position: auto;
       }
       .row.content {height:auto;}
     }
@@ -75,13 +78,13 @@
 
 <div class="container-fluid text-center">
 
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
+  <div class="row content" >
+    <div class="col-sm-2 sidenav" >
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
     </div>
-    <div class="col-sm-8 text-left">
+    <div class="col-sm-8 text-left" style="background-color: #f1f1f1;">
             {%block body%}
             {%endblock%}
 
@@ -101,7 +104,7 @@
 
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <p>AGORA Copyright.</p>
 </footer>
 
 </body>
