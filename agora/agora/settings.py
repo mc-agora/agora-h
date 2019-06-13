@@ -31,9 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main',
     'channels',
     'chat',
-    'accounts',
     'boards',
     'raws',
     'django.contrib.admin',
@@ -133,8 +133,11 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 # 개발 단계에서 사용하는 정적 파일이 위치한 경로들을 지정하는 설정 항목
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 # mysite/settings.py
