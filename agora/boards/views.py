@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Board, Comment    # models.py 에 있는 Board 라는 class를 import 하겠다는 의미
+from django.core.paginator import Paginator # paging 을 하기 위해 사용
 
 def index(request):
     boards = Board.objects.all()[::-1]
-    context = {'boards': boards}
+    paginator = Paginator(boards, 5) # 한 페이지당 5개의 글을 보여주겠다
+    page = request.GET.get('page')
+    lists = paginator.get_page(page)
+    context = {'boards': boards, 'lists': lists}
     return render(request, 'boards/index.html', context) # templates 안의 boards 폴더에 있는 index.html을 랜더하겠다.
 
 def new(request):
