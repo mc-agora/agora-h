@@ -13,7 +13,7 @@
             <th class="text-center">수정날짜</th>
         </tr>
     </thead>
-    {% for board in boards %}
+    {% for board in lists %}    <!-- boards 에서 lists로 변경 -->
     <tbody>
         <tr>
             <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.id}}</a></td>
@@ -25,6 +25,25 @@
     {% endfor %}
 </table>
 <hr>
+
 <a href="{% url 'boards:new' %}"><input type="button" value="글 작성"></a>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if lists.has_previous %}
+            <a href="?page=1">[맨앞]</a>
+            <a href="?page={{ lists.previous_page_number }}">[이전]</a>
+        {% endif %}
+
+        <span class="current">{{ lists.number}}</span>
+        <span>/</span>
+        <span>{{ lists.paginator.num_pages }}</span>
+
+        {% if lists.has_next %}
+            <a href="?page={{ lists.next_page_number }}">[다음]</a>
+            <a href="?page={{ lists.paginator.num_pages }}">[맨뒤]</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}
