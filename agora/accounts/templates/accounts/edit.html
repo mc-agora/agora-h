@@ -1,0 +1,16 @@
+{% extends 'accounts/base1.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+<h1>회원정보 수정</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form%}
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">회원정보 수정</button>
+    {% endbuttons %}
+</form>
+
+{% endblock%}
