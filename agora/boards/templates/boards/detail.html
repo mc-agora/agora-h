@@ -1,6 +1,6 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
-{% block body%}
+{% block body %}
 
 <h1 class="text-center" style="color:black">{{ board.pk }}번 게시판 글</h1>
 <hr>
@@ -15,60 +15,72 @@
         <tbody>
         <tr>
             <td class="text-center">글 번호</td>
-            <td class="text-center">{{board.pk}}</td>
+            <td class="text-center">{{ board.pk }}</td>
         </tr>
         <tr>
             <td class="text-center">글 제목</td>
-            <td class="text-center">{{board.title}}</td>
+            <td class="text-center">{{ board.title }}</td>
         </tr>
         <tr>
             <td class="text-center">작성 시각</td>
-            <td class="text-center">{{board.created_at}}</td>
+            <td class="text-center">{{ board.created_at }}</td>
         </tr>
         <tr>
             <td class="text-center" >수정 시각</td>
-            <td class="text-center">{{board.updated_at}}</td>
+            <td class="text-center">{{ board.updated_at }}</td>
         </tr>
         <tr>
             <td class="text-center" >글 내용</td>
-            <td class="text-center" style="word-break:break-all;" wrap="hard">{{board.content}}</td>
+            <td class="text-center" style="word-break:break-all;" wrap="hard">{{ board.content }}</td>
         </tr>
         </tbody>
     </table>
+
     <center>
 
     <form action="{% url 'boards:delete' board.pk %}" method="POST">
         {% csrf_token %}
         <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>
-        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
-        <input type="submit" value="삭제">
+        <!-- 글을 쓴 유저만 수정과 삭제가 가능하도록 조건을 걺  -->
+        {% if user == board.user %}
+            <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
+            <input type="submit" value="삭제">
+        {% endif %}
     </form>
     </center>
 
-<hr>
-    <center>
-    <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
-        {%csrf_token%}
-        <input type="text" name="content" size="78">
-        <input type="submit" value="댓글작성">
-    </form>
-    </center>
+
     <center>
     <hr>
         <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
-        {% for comment in comments %}
-
-            <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
-            {% csrf_token %}
-            <li style="word-break:break-all;" wrap="hard">{{ comment.content }}
-            <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
-            <input type="submit" value="댓글삭제">
-            </li>
+        {% if user.is_authenticated %}
+            {% for comment in comments %}
+                <p><b>{{ comment.user }} 님의 댓글 : {{ comment.content }}</b></p>
+                {% if comment.user == request.user %}
+                    <form action="{% url 'boards:comments_edit' board.pk comment.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="댓글수정">
+                    </form>
+                    <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="댓글삭제">
+                    </form>
+                {% endif %}
             {% empty %}
-            <p>현재 댓글이 없습니다. </p>
-            </form>
-        {% endfor %}
+                <p>댓글이 없습니다. </p>
+            {% endfor %}
+        {% else %}
+            <a href="{% url 'accounts:login' %}">로그인이 필요합니다.</a>
+        {% endif %}
     </center>
     <hr>
+
+    <center>
+        <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" value="댓글작성">
+        </form>
+    </center>
 
 {% endblock %}
