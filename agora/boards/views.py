@@ -103,3 +103,13 @@ def comments_delete(request, board_pk, comment_pk):
         return redirect('boards:detail', board_pk)
     comment.delete()
     return redirect('boards:detail', board_pk)
+
+
+@login_required()
+def like(request, board_pk):
+    board = get_object_or_404(Board, pk=board_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('boards:index')

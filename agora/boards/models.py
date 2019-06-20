@@ -10,8 +10,11 @@ class Board(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # AUTH_USER_MODEL : 장고가 기본적으로 갖고 있는 유저 모델
 
-    def __str__(self):  # -> __ 함수명 __ 이러한 형태의 메소드는 매직메소드라고 한다.
-        return f'{self.id}번글 - {self.title} : {self.content}'
+    # blank 옵션은 좋아요를 누르지 않은 경우를 생각해서 True로 설정.
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards', blank=True)
+
+    def __str__(self):
+        return f'글 번호 -> {self.id}, 글 제목 -> {self.title}, 글 내용 -> {self.content}'
 
 
 
