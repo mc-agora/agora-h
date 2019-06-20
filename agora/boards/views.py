@@ -79,19 +79,21 @@ def comments_create(request, board_pk):
         comment.save()
     return redirect('boards:detail', board_pk)
 
-
 @login_required()
 def comments_edit(request, board_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
-    if request.method == 'POST':
-        if request.user != comment.user:
-            return redirect('boards:detail', board_pk)
-
-        comment.content = request.POST.get('content')
-        comment.save()
+    if request.user == comment.user:
+        if request.method == 'POST':
+            form = CommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('boards:detail', board_pk)
+        else:
+            form = CommentForm(instance=comment)
     else:
         return redirect('boards:detail', board_pk)
-
+    context = {'form': form, 'comment': comment}
+    return render(request, 'boards/comment_edit.html', context)
 
 @login_required()
 @require_POST

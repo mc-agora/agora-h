@@ -57,15 +57,13 @@
             {% for comment in comments %}
                 <p><b>{{ comment.user }} 님의 댓글 : {{ comment.content }}</b></p>
                 {% if comment.user == request.user %}
-        <!-- -->
-                    <form action="{% url 'boards:comments_edit' board.pk comment.pk %}" method="post">
-                        {% csrf_token %}
-                        <input type="submit" value="댓글수정">
-                    </form>
+                    <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
+
                     <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
                         {% csrf_token %}
                         <input type="submit" value="댓글삭제">
                     </form>
+
                 {% endif %}
             {% empty %}
                 <p>댓글이 없습니다. </p>
@@ -73,6 +71,7 @@
         {% else %}
             <a href="{% url 'accounts:login' %}">로그인이 필요합니다.</a>
         {% endif %}
+
     </center>
     <hr>
 
