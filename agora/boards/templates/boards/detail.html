@@ -57,6 +57,7 @@
             {% for comment in comments %}
                 <p><b>{{ comment.user }} 님의 댓글 : {{ comment.content }}</b></p>
                 {% if comment.user == request.user %}
+        <!-- -->
                     <form action="{% url 'boards:comments_edit' board.pk comment.pk %}" method="post">
                         {% csrf_token %}
                         <input type="submit" value="댓글수정">
