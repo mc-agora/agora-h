@@ -34,4 +34,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'<Board{self.board_id}: Comment({self.id} - {self.content})>'
-
