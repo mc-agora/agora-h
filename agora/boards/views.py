@@ -30,7 +30,7 @@ def new(request):
 
 def detail(request, board_pk):
     board = get_object_or_404(Board, pk=board_pk)
-    comments = board.comment_set.all()
+    comments = board.comments_rn.all()
     comment_form = CommentForm()
     context = {
         'board': board,
