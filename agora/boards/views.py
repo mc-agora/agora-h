@@ -30,7 +30,7 @@ def new(request):
 
 def detail(request, board_pk):
     board = get_object_or_404(Board, pk=board_pk)
-    comments = board.comment_set.all()
+    comments = board.comments_rn.all()
     comment_form = CommentForm()
     context = {
         'board': board,
@@ -79,19 +79,21 @@ def comments_create(request, board_pk):
         comment.save()
     return redirect('boards:detail', board_pk)
 
-
 @login_required()
 def comments_edit(request, board_pk, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
-    if request.method == 'POST':
-        if request.user != comment.user:
-            return redirect('boards:detail', board_pk)
-
-        comment.content = request.POST.get('content')
-        comment.save()
+    if request.user == comment.user:
+        if request.method == 'POST':
+            form = CommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('boards:detail', board_pk)
+        else:
+            form = CommentForm(instance=comment)
     else:
         return redirect('boards:detail', board_pk)
-
+    context = {'form': form, 'comment': comment}
+    return render(request, 'boards/comment_edit.html', context)
 
 @login_required()
 @require_POST
@@ -101,3 +103,13 @@ def comments_delete(request, board_pk, comment_pk):
         return redirect('boards:detail', board_pk)
     comment.delete()
     return redirect('boards:detail', board_pk)
+
+
+@login_required()
+def like(request, board_pk):
+    board = get_object_or_404(Board, pk=board_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('boards:index')

@@ -11,17 +11,20 @@
             <th class="text-center">제목</th>
             <th class="text-center">날짜</th>
             <th class="text-center">수정날짜</th>
+            <th class="text-center">좋아요</th>
         </tr>
     </thead>
     {% for board in lists %}    <!-- boards 에서 lists로 변경 -->
         <tbody>
             <tr>
                 <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.id}}</a></td>
-                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.title}}</a></td>
+                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.title}}</a> ({{ board.comments_rn.all | length }})</td>
                 <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.created_at}}</a></td>
                 <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.updated_at}}</a></td>
+                <td class="text-center">{% include 'boards/_board.html' %}</td>
             </tr>
         </tbody>
+
     {% endfor %}
 </table>
 <hr>
