@@ -10,3 +10,4 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('content', 'user', 'created_at', 'updated_at',)
 
 admin.site.register(Comment, CommentAdmin)
+

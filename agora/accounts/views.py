@@ -1,21 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
-from .forms import UserCustomChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash # 비밀번호를 변경해도 로그인 상태 유지
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+
+from .forms import UserCustomCreationForm
+from IPython import embed
+
 
 def signup(request):
     if request.user.is_authenticated:             # 만약 로그인이 된 상태이면 바로 index 페이지로 보내버림
         return redirect('boards:index')
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCustomCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
             return redirect('boards:index')
     else:
-        form = UserCreationForm()
+        form = UserCustomCreationForm()
     context = {'form': form}
     return render(request, 'accounts/auth_form.html', context)
 
