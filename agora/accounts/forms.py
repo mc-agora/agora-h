@@ -9,9 +9,14 @@ class UserCustomChangeForm(UserChangeForm):
        fields = ('email', 'first_name', 'last_name')
 
 class UserCustomCreationForm(UserCreationForm):
-    birthdate = forms.DateField(input_formats = settings.DATE_INPUT_FORMATS)
+    birthdate = forms.DateField(input_formats = settings.DATE_INPUT_FORMATS, label='생년월일',)
+
+    username = forms.CharField(label='아이디')
+
     class Meta:
        model = get_user_model()
 
-       fields = ('user_id','username','birthdate','gender','email','job','profilepic','age')
+       fields = ('username', 'user_name', 'birthdate',
+                 'gender', 'email', 'job', 'profilepic',
+                 'age')
 
