@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash # 비밀번호를 변경해도 로그인 상태 유지
-from django.contrib.auth.decorators import login_required
-from django.db import transaction
-
-from .forms import UserCustomCreationForm
-from IPython import embed
+from .forms import UserCustomCreationForm, UserCustomChangeForm
 
 
 def signup(request):

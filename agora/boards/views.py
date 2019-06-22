@@ -4,7 +4,7 @@ from .forms import BoardForm, CommentForm
 from django.core.paginator import Paginator # paging 을 하기 위해 사용
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-
+from django.contrib.auth import get_user_model
 
 def index(request):
     boards = Board.objects.all()[::-1]
@@ -30,12 +30,14 @@ def new(request):
 
 def detail(request, board_pk):
     board = get_object_or_404(Board, pk=board_pk)
+    person = get_object_or_404(get_user_model(), pk=board.user.pk)  # 글쓴 사람
     comments = board.comments_rn.all()
     comment_form = CommentForm()
     context = {
         'board': board,
         'comments': comments,
         'comment_form': comment_form,
+        'person': person
     }
     return render(request, 'boards/detail.html', context)
 
@@ -113,3 +115,17 @@ def like(request, board_pk):
     else:
         board.like_users.add(request.user)
     return redirect('boards:index')
+
+
+
+# 팔로우 : 특정 대상을 팔로우하는 경우 그 대상의 소식을 만날 수 있습니다.
+# 팔로워 : 나 또는 특정 대상을 팔로우하는 사람을 뜻합니다.
+# 팔로잉 : 나 또는 특정 대상이 팔로우하는 사람을 뜻합니다.
+@login_required()
+def follow(request, board_pk, user_pk):
+   person = get_object_or_404(get_user_model(), pk=user_pk)
+   if request.user in person.followers.all():
+       person.followers.remove(request.user)
+   else:
+       person.followers.add(request.user)
+   return redirect('boards:detail', board_pk)
