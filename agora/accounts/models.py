@@ -22,11 +22,11 @@ class User(AbstractUser):
         (Female, 'Female'),
         (Male, 'Male')
     )
-    user_id = models.CharField(max_length=20, blank=False)
-    birthdate = models.DateField(null=False, blank=False)
+    user_id = models.CharField(max_length=20, blank=True)
+    birthdate = models.DateField(null=True, blank=True)
     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
     job = models.PositiveSmallIntegerField(choices=JOB_CHOICES, null=True, blank=True)
-    age = models.IntegerField(blank=False)
+    age = models.IntegerField(blank=True)
     gender = models.CharField(max_length=1, choices=GENDER, default=Male)
 
 
