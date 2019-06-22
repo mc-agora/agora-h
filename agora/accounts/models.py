@@ -21,6 +21,7 @@ class User(AbstractUser):
         (Female, '여성'),
         (Male, '남성')
     )
+
     user_name = models.CharField(max_length=20, blank=False, verbose_name='성명')
     birthdate = models.DateField(null=False, blank=False, verbose_name='생년월일')
     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg', verbose_name='프로필 이미지')
