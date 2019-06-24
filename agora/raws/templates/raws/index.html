@@ -2,10 +2,33 @@
 
 {% block body %}
     <h1>RAWS</h1>
-{{total_page}}
-{% for list in groups %}
-    <p>{{list}}</p><br>
-{% endfor %}
+{{total_page}}<br>
 
+{% for i in page_num_num %}
+    {{i}}<br>
+{% endfor %}
+{%for i in raw_num%}
+    {{i}}<br>
+{%endfor%}
+
+{%for i in raw_name%}
+    {{i}}<br>
+{%endfor%}
+
+{%for i in raw_attribue%}
+    {{i}}<br>
+{%endfor%}
+
+{%for i in raw_condition%}
+    {{i}}<br>
+{%endfor%}
+
+{%for i in raw_department%}
+    {{i}}<br>
+{%endfor%}
+
+{%for i in raw_status%}
+    {{i}}<br>
+{%endfor%}
 
 {% endblock %}
