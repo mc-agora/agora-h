@@ -6,7 +6,7 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path('accounts/', include('accounts.urls')),
     path('main/', include('main.urls')),
-    path('laws/', include('laws.urls')),
+    path('parsed_data/', include('parsed_data.urls')),
     path('chat/', include('chat.urls')),
     path('boards/', include('boards.urls')),
     path('admin/', admin.site.urls),

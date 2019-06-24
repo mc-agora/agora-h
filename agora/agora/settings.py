@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'channels',
     'chat',
     'boards',
-    'laws',
+    'parsed_data',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'parsed_data',
 ]
 
 MIDDLEWARE = [
