@@ -47,7 +47,7 @@ def index():
     groups2 = []
     dict_objs = []
 
-    for num in range(1, total_page):
+    for num in range(1, 3):
         html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex={num}').text
         soup2 = bs4.BeautifulSoup(html2, "html.parser")
         ranks2 = soup2.select('.tbl_typeA tr td')
@@ -96,7 +96,7 @@ def pagenum():
     page_num_num = []  # 입법 세부 페이지 번호
     dict_objs2 = []
 
-    for num in range(1, total_page):
+    for num in range(1, 3):
         html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex={num}').text
         soup2 = bs4.BeautifulSoup(html2, "html.parser")
         page_num = soup2.select('.tbl_typeA tr td a')

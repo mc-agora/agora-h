@@ -146,4 +146,4 @@ CHANNEL_LAYERS = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
-DATE_INPUT_FORMATS = ['%Y-%m-%d']
+DATE_INPUT_FORMATS = ['%Y%m%d']
