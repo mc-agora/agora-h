@@ -67,15 +67,28 @@
         <li><a href="/main/#about">About</a></li>
         <li><a href="/boards/">자유게시판</a></li>
         <li><a href="/chat/">토론장</a></li>
-        <li><a href="#">공지사항</a></li>
         <li><a href="">완료입법</a></li>
         <li><a href="/raws/">입법현황</a></li>
         <li><a href="/main/#contact">Contact</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'boards:mypage' user.pk %}">마이페이지</a></li>
+        {% endif %}
+      </ul>
 
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'accounts:login'%}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% if user.is_authenticated %}
+          <form action="{% url 'accounts:logout' %}" method="post">
+              {% csrf_token %}
+            <span class="glyphicon glyphicon-log-out"></span><input type="submit" value="logout">
+          </form>
+
+      {% else %}
+          <a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> login</a>
+      {% endif %}
       </ul>
+
+
+
     </div>
   </div>
 </nav>
