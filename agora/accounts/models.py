@@ -1,6 +1,7 @@
 # from django.contrib.auth.models import User, AbstractUser
 # from django.db import models
 from django.conf import settings
+
 #
 # from django.core.validators import MaxValueValidator, MinValueValidator
 #
@@ -37,6 +38,8 @@ from django.contrib.auth.models import (
 )
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.template.backends import django
+
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None):
@@ -69,7 +72,7 @@ class MyUserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class User(AbstractBaseUser):
     email = models.EmailField(
@@ -88,20 +91,24 @@ class User(AbstractBaseUser):
         (POLITICS, '정치계'),
         (SPECIALIST, '산업계'),
     )
-    Female = 'F'
-    Male = 'M'
+    Female = '여성'
+    Male = '남성'
     GENDER = (
         (Female, '여성'),
         (Male, '남성')
     )
 
+    username = models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, verbose_name='username')
     user_name = models.CharField(max_length=20, blank=False, verbose_name='성명')
+
     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg', verbose_name='프로필 이미지')
     job = models.PositiveSmallIntegerField(choices=JOB_CHOICES, null=True, blank=True, verbose_name='영역')
     age = models.PositiveIntegerField(default=20, validators=[MinValueValidator(18), MaxValueValidator(100)], blank=False, verbose_name='나이')
-    gender = models.CharField(max_length=1, choices=GENDER, default=Male, verbose_name='성별')
+    gender = models.CharField(max_length=2, choices=GENDER, default=Male, verbose_name='성별')
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
-    date_of_birth = models.DateField()
+    text = models.TextField(blank=False, null=False, verbose_name='자기소개')
+
+    date_of_birth = models.DateField(null=False, blank=False, verbose_name='생년월일')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -122,6 +129,9 @@ class User(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+
+
 
     @property
     def is_staff(self):

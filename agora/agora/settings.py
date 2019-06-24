@@ -20,12 +20,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mypage',
     'accounts',
     'main',
     'channels',
     'chat',
     'boards',
-    'raws',
+    'laws',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

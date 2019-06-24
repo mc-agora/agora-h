@@ -58,8 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="" class="navbar-left"><img src="{% static 'images/logo.png' %}" height="43px;" style="padding-top: 5px; padding-right: 20px;" prefix="True"></a>
-      <a class="navbar-brand" href="#">Agora</a>
+        <a href="{% url 'main:index' %}" class="navbar-left"><img src="{% static 'images/a2.png' %}" height="43px;" style="padding-top: 5px; padding-right: 20px;" prefix="True"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -67,15 +66,28 @@
         <li><a href="/main/#about">About</a></li>
         <li><a href="/boards/">자유게시판</a></li>
         <li><a href="/chat/">토론장</a></li>
-        <li><a href="#">공지사항</a></li>
         <li><a href="">완료입법</a></li>
-        <li><a href="/raws/">입법현황</a></li>
+        <li><a href="/laws/">입법현황</a></li>
         <li><a href="/main/#contact">Contact</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'mypage:userprofile' user.pk %}">마이페이지</a></li>
+        {% endif %}
+      </ul>
 
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'accounts:login'%}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% if user.is_authenticated %}
+          <form action="{% url 'accounts:logout' %}" method="post">
+              {% csrf_token %}
+            <span class="glyphicon glyphicon-log-out"></span><input type="submit" value="logout">
+          </form>
+
+      {% else %}
+          <a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> login</a>
+      {% endif %}
       </ul>
+
+
+
     </div>
   </div>
 </nav>
