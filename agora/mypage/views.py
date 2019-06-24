@@ -15,7 +15,7 @@ def userprofile(request, user_pk):
     context = {
         'id': person.username,
         'name': person.user_name,
-        'birthdate': person.birthdate,
+        'date_of_birth': person.date_of_birth,
         'job': person.job,
         'age': person.age,
         'gender': person.gender,
