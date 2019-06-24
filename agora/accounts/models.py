@@ -1,45 +1,8 @@
-# from django.contrib.auth.models import User, AbstractUser
-# from django.db import models
-from django.conf import settings
-
-#
-# from django.core.validators import MaxValueValidator, MinValueValidator
-#
-# class User(AbstractUser):
-#     PEOPLE = 1
-#     PROFESSOR = 2
-#     POLITICS = 3
-#     SPECIALIST = 4
-#     JOB_CHOICES = (
-#         (PEOPLE, '일반인'),
-#         (PROFESSOR, '학계'),
-#         (POLITICS, '정치계'),
-#         (SPECIALIST, '산업계'),
-#     )
-#     Female = 'F'
-#     Male = 'M'
-#     GENDER = (
-#         (Female, '여성'),
-#         (Male, '남성')
-#     )
-#
-#     user_name = models.CharField(max_length=20, blank=False, verbose_name='성명')
-#     birthdate = models.DateField(null=False, blank=False, verbose_name='생년월일')
-#     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg', verbose_name='프로필 이미지')
-#     job = models.PositiveSmallIntegerField(choices=JOB_CHOICES, null=True, blank=True, verbose_name='영역')
-#     age = models.PositiveIntegerField(default=20, validators=[MinValueValidator(18), MaxValueValidator(100)], blank=False, verbose_name='나이')
-#     gender = models.CharField(max_length=1, choices=GENDER, default=Male, verbose_name='성별')
-#     followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
-
-
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 from django.conf import settings
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.template.backends import django
-
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None):
@@ -98,7 +61,7 @@ class User(AbstractBaseUser):
         (Male, '남성')
     )
 
-    username = models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, verbose_name='username')
+    username = models.CharField(error_messages={'unique': '이미 존재하는 아이디입니다.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, verbose_name='아이디')
     user_name = models.CharField(max_length=20, blank=False, verbose_name='성명')
 
     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg', verbose_name='프로필 이미지')
@@ -114,7 +77,7 @@ class User(AbstractBaseUser):
 
     objects = MyUserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['date_of_birth']
 
     def __str__(self):
@@ -129,9 +92,6 @@ class User(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
-
-
-
 
     @property
     def is_staff(self):
