@@ -19,7 +19,8 @@ def userprofile(request, user_pk):
         'job': person.job,
         'age': person.age,
         'gender': person.gender,
-        'pic': pic_url
+        'pic': pic_url,
+        'text': person.text
     }
     return render(request, 'mypage/userprofile.html', context)
 
