@@ -6,17 +6,19 @@ from django import forms
 class UserCustomChangeForm(UserChangeForm):
     class Meta:
        model = get_user_model()
-       fields = ('email', 'first_name', 'last_name')
+       fields = ('user_name', 'job', 'profilepic', 'text')
 
 class UserCustomCreationForm(UserCreationForm):
-    birthdate = forms.DateField(input_formats = settings.DATE_INPUT_FORMATS, label='생년월일',)
+    birthdate = forms.DateField(input_formats = settings.DATE_INPUT_FORMATS, label='생년월일 | yyyy-mm-dd',)
 
     username = forms.CharField(label='아이디')
+
+    text = forms.Textarea()
 
     class Meta:
        model = get_user_model()
 
        fields = ('username', 'user_name', 'birthdate',
                  'gender', 'email', 'job', 'profilepic',
-                 'age')
+                 'age', 'text')
 
