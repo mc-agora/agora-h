@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "agora.settings")
 import django
 django.setup()
 
-from parsed_data.models import RawData, NumData
+from parsed_data.models import LawData, LawNum
 
 
 def cleanText(readData):
@@ -20,25 +20,25 @@ def chunker(seq, size):
 
 
 def index():
-    html = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex=1').text
+    html = requests.get(f'https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out?pageIndex=1').text
     soup = bs4.BeautifulSoup(html, "html.parser")
     ranks = soup.select('.tbl_typeA tr td')
-    page_num = soup.select('.tbl_typeA tr td a')
+    page_num = soup.select('.tbl_top_area')
     data = []
     for i in range(len(ranks)):
         data.append(cleanText(ranks[i].text))
     groups = []
     for group in chunker(data, 6):
         groups.append(group)
-    total_page = math.ceil(int(groups[0][0]) / 10)
+    total_page = int(cleanText(str(page_num[0])[205:210]))
 
     data2 = []
-    raw_num = []
-    raw_name = []
-    raw_attribue = []
-    raw_condition = []
-    raw_department = []
-    raw_status = []
+    law_name = []
+    law_people = []
+    law_department = []
+    law_condition = []
+    law_date = []
+    law_doc_num = []
 
     page_num_num = []  # 입법 세부 페이지 번호
 
@@ -46,7 +46,7 @@ def index():
     dict_objs = []
 
     for num in range(1, 5):
-        html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex={num}').text
+        html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out?pageIndex={num}').text
         soup2 = bs4.BeautifulSoup(html2, "html.parser")
         ranks2 = soup2.select('.tbl_typeA tr td')
 
@@ -55,22 +55,22 @@ def index():
 
         for j in chunker(data2, 6):
             groups2.append(j)
-            raw_num.append(j[0])
-            raw_name.append(j[1])
-            raw_attribue.append(j[2])
-            raw_condition.append(j[3])
-            raw_department.append(j[4])
-            raw_status.append(j[5])
+            law_name.append(j[0])
+            law_people.append(j[1])
+            law_department.append(j[2])
+            law_condition.append(j[3])
+            law_date.append(j[4])
+            law_doc_num.append(j[5])
 
         for i in page_num:
             page_num_num.append(str(i)[36:49])
 
-        context = ['raw_num',
-                   'raw_name',
-                   'raw_attribue',
-                   'raw_condition',
-                   'raw_department',
-                   'raw_status']
+        context = ['law_name',
+                   'law_people',
+                   'law_department',
+                   'law_condition',
+                   'law_date',
+                   'law_doc_num']
 
         for k in range(len(groups2)):
             zipbObj = zip(context, groups2[k])
@@ -79,28 +79,28 @@ def index():
     return dict_objs
 
 def pagenum():
-    html = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex=1').text
+    html = requests.get(f'https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out?pageIndex=1').text
     soup = bs4.BeautifulSoup(html, "html.parser")
     ranks = soup.select('.tbl_typeA tr td')
-    page_num = soup.select('.tbl_typeA tr td a')
+    page_num = soup.select('.tbl_top_area')
     data = []
     for i in range(len(ranks)):
         data.append(cleanText(ranks[i].text))
     groups = []
     for group in chunker(data, 6):
         groups.append(group)
-    total_page = math.ceil(int(groups[0][0]) / 10)
+    total_page = int(cleanText(str(page_num[0])[205:210]))
 
     page_num_num = []  # 입법 세부 페이지 번호
     dict_objs2 = []
 
     for num in range(1, 5):
-        html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex={num}').text
+        html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out?pageIndex={num}').text
         soup2 = bs4.BeautifulSoup(html2, "html.parser")
         page_num = soup2.select('.tbl_typeA tr td a')
 
         for i in range(len(page_num)):
-            page_num_num.append(str(page_num[i])[36:49])
+            page_num_num.append(str(page_num[i])[32:39])
 
         context2 = ['page_num_num']
 
@@ -116,14 +116,15 @@ if __name__ == '__main__':
     num_dict = pagenum()
     for i in range(len(data_dict)):
         item = data_dict[i]
-        RawData(raw_name=item['raw_name'],
-                raw_attribue=item['raw_attribue'],
-                raw_condition=item['raw_condition'],
-                raw_department=item['raw_department'],
-                raw_status=item['raw_status']).save()
+        LawData(law_name=item['law_name'],
+                law_people=item['law_people'],
+                law_department=item['law_department'],
+                law_condition=item['law_condition'],
+                law_date=item['law_date'],
+                law_doc_num=item['law_doc_num']).save()
     for j in range(len(num_dict)):
         number = num_dict[j]
-        NumData(
+        LawNum(
             page_num_num=number['page_num_num']
         ).save()
 
