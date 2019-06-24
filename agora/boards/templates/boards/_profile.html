@@ -14,4 +14,5 @@
            <a class='btn btn-primary' href="{% url 'boards:follow' board.pk person.pk %}" role="button">Follow</a>
        {% endif %}
    {% endif %}
+    <a class="btn btn-primary" href="{% url 'mypage:userprofile' person.pk %}" role="button">유저페이지</a>
 </div>

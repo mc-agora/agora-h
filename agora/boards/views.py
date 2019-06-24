@@ -130,25 +130,3 @@ def follow(request, board_pk, user_pk):
        person.followers.add(request.user)
    return redirect('boards:detail', board_pk)
 
-
-
-#######
-
-@login_required()
-def userinfo(request, user_pk):
-    person = get_object_or_404(get_user_model(), pk=user_pk)
-
-    if not person.profilepic:
-        pic_url = ""
-    else:
-        pic_url = person.profilepic.url
-    context = {
-        'id': person.username,
-        'name': person.user_name,
-        'birthdate': person.birthdate,
-        'job': person.job,
-        'age': person.age,
-        'gender': person.gender,
-        'pic': pic_url
-    }
-    return render(request, 'boards/mypage.html', context)
