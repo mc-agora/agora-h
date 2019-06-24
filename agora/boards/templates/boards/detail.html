@@ -55,7 +55,7 @@
     <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
     {% if user.is_authenticated %}
         {% for comment in comments %}
-            <p><b>{{ comment.user }} 님의 댓글 : {{ comment.content }}</b></p>
+            <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>
             {% if comment.user == request.user %}
                 <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
                 <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">

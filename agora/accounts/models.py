@@ -16,7 +16,7 @@ class User(AbstractUser, models.Model):
     )
     Female = '여성'
     Male = '남성'
-    GENDER_CHOICES = (
+    GENDER = (
         (Female, '여성'),
         (Male, '남성')
     )
@@ -26,7 +26,8 @@ class User(AbstractUser, models.Model):
     profilepic = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg', verbose_name='프로필 이미지')
     job = models.PositiveSmallIntegerField(choices=JOB_CHOICES, null=True, blank=True, verbose_name='영역')
     age = models.PositiveIntegerField(default=20, validators=[MinValueValidator(18), MaxValueValidator(100)], blank=False, verbose_name='나이')
-    gender = models.CharField(max_length=2, choices=GENDER_CHOICES, default=Male, verbose_name='성별')
+
+    gender = models.CharField(max_length=2, choices=GENDER, default=Male, verbose_name='성별')
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
     text = models.TextField(blank=False, null=False, verbose_name='자기소개')
 
