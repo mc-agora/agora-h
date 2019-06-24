@@ -44,7 +44,7 @@ def detail(request, board_pk):
 
 def delete(request, board_pk):
     board = get_object_or_404(Board, pk=board_pk)
-    if board.user == request.user:  # 작성한 유저와 삭제요처을 한 유저가 같으면 조건문 실행
+    if board.user == request.user:  # 작성한 유저와 삭제요청을 한 유저가 같으면 조건문 실행
         if request.method == 'POST':
             board.delete()
             return redirect('boards:index')
@@ -129,3 +129,26 @@ def follow(request, board_pk, user_pk):
    else:
        person.followers.add(request.user)
    return redirect('boards:detail', board_pk)
+
+
+
+#######
+
+@login_required()
+def userinfo(request, user_pk):
+    person = get_object_or_404(get_user_model(), pk=user_pk)
+
+    if not person.profilepic:
+        pic_url = ""
+    else:
+        pic_url = person.profilepic.url
+    context = {
+        'id': person.username,
+        'name': person.user_name,
+        'birthdate': person.birthdate,
+        'job': person.job,
+        'age': person.age,
+        'gender': person.gender,
+        'pic': pic_url
+    }
+    return render(request, 'boards/mypage.html', context)
