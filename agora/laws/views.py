@@ -23,4 +23,4 @@ def index(request):
         groups.append(group)
     total_page = math.ceil(int(groups[0][0]) / 10)
     context={'groups':groups, 'total_page':total_page}
-    return render(request, 'raws/index.html',context)
+    return render(request, 'laws/index.html',context)
