@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import datetime
+from django.conf import settings
 
 # gov No. 법령명   법령종류  제개정구분  소관부처  추진현황
 class RawData(models.Model):
@@ -58,3 +60,106 @@ class ReguNum(models.Model):
     def __str__(self):
         return f'<{self.Link_Page_num}>'
 
+class Pg_Board(models.Model):
+    #raws = models.ForeignKey(RawData, on_delete=models.CASCADE, related_name='pg_board_raws')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Pg_Comment(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Pg_Board, on_delete=models.CASCADE, related_name='pd_comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+class Pg_Board2(models.Model):
+    #raws = models.ForeignKey(RawData, on_delete=models.CASCADE, related_name='pg_board_raws2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Pg_Comment2(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Pg_Board2, on_delete=models.CASCADE, related_name='pd_comments2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+##########################################################################################
+################################## 국회 ###################################################
+##########################################################################################
+
+class Pa_Board(models.Model):
+    #laws = models.ForeignKey(LawData, on_delete=models.CASCADE, related_name='pa_board_laws')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Pa_Comment(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Pa_Board, on_delete=models.CASCADE, related_name='pa_comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+class Pa_Board2(models.Model):
+    #laws = models.ForeignKey(LawData, on_delete=models.CASCADE, related_name='pa_board_laws2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Pa_Comment2(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Pa_Board2, on_delete=models.CASCADE, related_name='pa_comments2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+##########################################################################################
+################################## 국회 규제 ###############################################
+##########################################################################################
+
+class Par_Board(models.Model):
+    #regu = models.ForeignKey(ReguData, on_delete=models.CASCADE, related_name='par_board')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Par_Comment(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Par_Board, on_delete=models.CASCADE, related_name='par_comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+class Par_Board2(models.Model):
+    #regu = models.ForeignKey(ReguData, on_delete=models.CASCADE, related_name='par_board2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(null=False, max_length=120)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+
+class Par_Comment2(models.Model):
+    content = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    board = models.ForeignKey(Par_Board2, on_delete=models.CASCADE, related_name='par_comments2')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

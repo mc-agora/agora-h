@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{%load static%}
+{% block body %}
+
+{% if request.resolver_match.url_name == 'ga_new' %}
+    <h1 align="center">New</h1>
+{% elif request.resolver_match.url_name == 'gd_new' %}
+    <h1 align="center">New</h1>
+{% else %}
+    <h1 align="center">Edit</h1>
+{% endif %}
+<hr>
+
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_button "글작성" button_type='submit' button_class='btn-primary' %}
+
+<!--    {{ form.as_p }}   &lt;!&ndash; form의 내용을 p 태그로 만들겠다. &ndash;&gt;-->
+<!--    <input type="submit" value="등록">-->
+
+    {% if request.resolver_match.url_name == 'new' %}    <!-- create -> new 로 바꿈 -->
+        <a href="{% url 'parsed_data:index' %}" class="btn btn-primary">메인페이지</a>
+    {% else %}
+        <a href="#" class="btn btn-primary">상세페이지</a>
+    {% endif %}
+
+</form>
+{% endblock %}

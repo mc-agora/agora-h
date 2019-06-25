@@ -14,7 +14,7 @@
             <th class="text-center">좋아요</th>
         </tr>
     </thead>
-    {% for board in lists %}    <!-- boards 에서 lists로 변경 -->
+    {% for board in lists %}    <!-- communication_boards 에서 lists로 변경 -->
         <tbody>
             <tr>
                 <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.id}}</a></td>
