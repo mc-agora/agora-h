@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="text-center" style="color:black">국회 입법현황<규제관련></h1>
+
+<table class="table table-hover" bgcolor="Cornsilk ">
+    <thead>
+        <tr>
+            <th class="text-center">글번호</th>
+            <th class="text-center">법률안</th>
+            <th class="text-center">제안자</th>
+            <th class="text-center">의안번호</th>
+        </tr>
+    </thead>
+    {%for i in Regus_lists%}
+        <tbody>
+            <tr>
+                <td class="text-center">{{i.total_num}}</td>
+                <td class="text-center">{{i.regu_name}}</td>
+                <td class="text-center">{{i.regu_dates}}</td>
+                <td class="text-center">{{i.regu_num}}</td>
+            </tr>
+        </tbody>
+        {%endfor%}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if Regus_lists.has_previous %}
+            <a href="?page=1">[맨앞]</a>
+            <a href="?page={{ Regus_lists.previous_page_number }}">[이전]</a>
+        {% endif %}
+
+        <span class="current">{{ Regus_lists.number}}</span>
+        <span>/</span>
+        <span>{{ Regus_lists.paginator3.num_pages }}</span>
+
+        {% if Regus_lists.has_next %}
+            <a href="?page={{ Regus_lists.next_page_number }}">[다음]</a>
+            <a href="?page={{ Regus_lists.paginator3.num_pages }}">[맨뒤]</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
