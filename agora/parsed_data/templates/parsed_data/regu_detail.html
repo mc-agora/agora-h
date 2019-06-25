@@ -47,7 +47,7 @@
 <div  style="width:910px; margin:5 auto;">
     <div class="twosteps" style="float:left; margin-right:10px;width:450px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; >
-            <h3>찬성</h3>
+            <h3 class="text-center">찬성</h3>
             <thead>
                 <tr>
                     <th style=width:100px; class="text-center">번호</th>
@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                {%for i in boards%}
+                {%for i in regu_lists%}
                 <tr>
                     <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ regu.id }}/agree/{{ i.id }}">{{i.id}}</a></td>
                     <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ regu.id }}/agree/{{ i.id }}">{{i.title}}</a></td>
@@ -63,7 +63,23 @@
                 {%endfor%}
             </tbody>
         </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if regu_lists.has_previous %}
+                    <a href="?page=1">[맨앞]</a>
+                    <a href="?page={{ regu_lists.previous_page_number }}">[이전]</a>
+                {% endif %}
 
+                <span class="current">{{ regu_lists.number}}</span>
+                <span>/</span>
+                <span>{{ regu_lists.paginator.num_pages }}</span>
+
+                {% if regu_lists.has_next %}
+                    <a href="?page={{ regu_lists.next_page_number }}">[다음]</a>
+                    <a href="?page={{ regu_lists.paginator.num_pages }}">[맨뒤]</a>
+                {% endif %}
+            </span>
+        </div>
 
     {% if user.is_authenticated %}
         <a href="{% url 'parsed_data:ra_new' regu.id %}"><input type="button" value="글작성"></a>
@@ -76,7 +92,7 @@
 
     <div class="thwosteps" style="float:left; width:450px; border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid;>
-            <h3>반대</h3>
+            <h3 class="text-center">반대</h3>
             <thead>
                 <tr>
                     <th style=width:100px; class="text-center">번호</th>
@@ -84,7 +100,7 @@
                 </tr>
             </thead>
             <tbody>
-                {%for k in boards2%}
+                {%for k in regu_lists2%}
                 <tr>
                     <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ regu.id }}/disagree/{{ k.id }}">{{k.id}}</a></td>
                     <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ regu.id }}/disagree/{{ k.id }}">{{k.title}}</a></td>
@@ -92,6 +108,23 @@
                 {%endfor%}
             </tbody>
         </table>
+        <div class="pagination2">
+            <span class="step-links">
+                {% if regu_lists2.has_previous %}
+                    <a href="?page=1">[맨앞]</a>
+                    <a href="?page={{ regu_lists2.previous_page_number }}">[이전]</a>
+                {% endif %}
+
+                <span class="current">{{ regu_lists2.number}}</span>
+                <span>/</span>
+                <span>{{ regu_lists2.paginator.num_pages }}</span>
+
+                {% if regu_lists2.has_next %}
+                    <a href="?page={{ regu_lists2.next_page_number }}">[다음]</a>
+                    <a href="?page={{ regu_lists2.paginator.num_pages }}">[맨뒤]</a>
+                {% endif %}
+            </span>
+        </div>
             {% if user.is_authenticated %}
                 <a href="{% url 'parsed_data:rd_new' regu.id %}"><input type="button" value="글작성"></a>
             {% else %}
