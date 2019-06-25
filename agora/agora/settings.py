@@ -151,3 +151,6 @@ DATE_INPUT_FORMATS = ['%Y%m%d']
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'boards', 'static', 'images')
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
