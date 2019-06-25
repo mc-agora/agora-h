@@ -8,4 +8,8 @@ urlpatterns = [
     path('GOV/', views.GOV, name='GOV'),
     path('ASSEM/', views.ASSEM, name='ASSEM'),
     path('ASSEM-REGU/', views.ASSEM_REGU, name='ASSEM_REGU'),
+    path('GOV/<int:gov_pk>/', views.GOV_DETAIL, name='gov_detail'),
+    path('ASSEM/<int:assem_pk>/', views.ASSEM_DETAIL, name='assem_detail'),
+    path('ASSEM-REGU/<int:regu_pk>/', views.REGU_DETAIL, name='regu_detail'),
+
 ]

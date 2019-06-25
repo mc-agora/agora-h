@@ -14,7 +14,7 @@
     {%for i in Laws_lists%}
         <tbody>
             <tr>
-                <td class="text-center">{{i.law_name}}</td>
+                <td class="text-center"><a href="/parsed_data/ASSEM/{{ i.id }}/">{{i.law_name}}</a></td>
                 <td class="text-center">{{i.law_people}}</td>
                 <td class="text-center">{{i.law_doc_num}}</td>
             </tr>
