@@ -1,17 +1,16 @@
 from django.db import models
 
-# Create your models here.
-
+# gov No. 법령명   법령종류  제개정구분  소관부처  추진현황
 class RawData(models.Model):
     raw_num = models.CharField(max_length=200)
     raw_name = models.CharField(max_length=200)
-    raw_attribute = models.CharField(max_length=200)
+    raw_attribue = models.CharField(max_length=200)
     raw_condition = models.CharField(max_length=200)
     raw_department = models.CharField(max_length=200)
     raw_status = models.CharField(max_length=200)
 
     def __str__(self):
-    	return f'<{self.raw_num}/{self.raw_name}/{self.raw_attribute}/{self.raw_condition}/{self.raw_department}/{self.raw_status}>'
+    	return f'<{self.raw_num}/{self.raw_name}/{self.raw_attribue}/{self.raw_condition}/{self.raw_department}/{self.raw_status}>'
 
 class NumData(models.Model):
     page_num_num = models.CharField(max_length=200)
@@ -19,8 +18,7 @@ class NumData(models.Model):
     def __str__(self):
         return f'<{self.page_num_num}>'
 
-# Create your models here.
-
+# assem   의안명   제안자   상임위원회  국회현황   의결현황    의안번호
 class LawData(models.Model):
     law_name = models.CharField(max_length=200)
     law_people = models.CharField(max_length=200)
@@ -38,7 +36,7 @@ class LawNum(models.Model):
     def __str__(self):
         return f'<{self.page_num_num}>'
 
-
+# assem_regu    No.  법률안   규제조문수  소관부처  제안자 국회현황 추진현황  의안번호
 class ReguData(models.Model):
     total_num = models.CharField(max_length=200)
     trash_val = models.CharField(max_length=200)
