@@ -22,6 +22,7 @@
         </tbody>
         {%endfor%}
 </table>
+
 <div class="pagination">
     <span class="step-links">
         {% if Raws_lists.has_previous %}
@@ -31,11 +32,11 @@
 
         <span class="current">{{ Raws_lists.number}}</span>
         <span>/</span>
-        <span>{{ Raws_lists.paginator1.num_pages }}</span>
+        <span>{{ Raws_lists.paginator.num_pages }}</span>
 
         {% if Raws_lists.has_next %}
             <a href="?page={{ Raws_lists.next_page_number }}">[다음]</a>
-            <a href="?page={{ Raws_lists.paginator1.num_pages }}">[맨뒤]</a>
+            <a href="?page={{ Raws_lists.paginator.num_pages }}">[맨뒤]</a>
         {% endif %}
     </span>
 </div>

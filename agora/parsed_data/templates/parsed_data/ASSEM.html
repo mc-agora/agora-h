@@ -19,8 +19,9 @@
                 <td class="text-center">{{i.law_doc_num}}</td>
             </tr>
         </tbody>
-        {%endfor%}
+        {% endfor %}
 </table>
+
 <div class="pagination">
     <span class="step-links">
         {% if Laws_lists.has_previous %}
@@ -30,11 +31,11 @@
 
         <span class="current">{{ Laws_lists.number}}</span>
         <span>/</span>
-        <span>{{ Laws_lists.paginator2.num_pages }}</span>
+        <span>{{ Laws_lists.paginator.num_pages }}</span>
 
         {% if Laws_lists.has_next %}
             <a href="?page={{ Laws_lists.next_page_number }}">[다음]</a>
-            <a href="?page={{ Laws_lists.paginator2.num_pages }}">[맨뒤]</a>
+            <a href="?page={{ Laws_lists.paginator.num_pages }}">[맨뒤]</a>
         {% endif %}
     </span>
 </div>
