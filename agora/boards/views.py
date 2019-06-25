@@ -26,7 +26,7 @@ def new(request):
     else:
         form = BoardForm()
     context = {'form': form}
-    return render(request, 'boards/R_form.html', context)
+    return render(request, 'boards/form.html', context)
 
 def detail(request, board_pk):
     board = get_object_or_404(Board, pk=board_pk)
@@ -67,7 +67,7 @@ def edit(request, board_pk):
     else:
         return redirect('boards:index')
     context = {'board': board, 'form': form}
-    return render(request, 'boards/R_form.html', context)
+    return render(request, 'boards/form.html', context)
 
 
 @login_required()
