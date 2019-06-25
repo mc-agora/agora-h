@@ -12,7 +12,7 @@ def index(request):
     page = request.GET.get('page')
     lists = paginator.get_page(page)
     context = {'boards': boards, 'lists': lists}
-    return render(request, 'boards/index.html', context) # templates 안의 boards 폴더에 있는 index.html을 랜더하겠다.
+    return render(request, 'boards/index.html', context) # templates 안의 communication_boards 폴더에 있는 index.html을 랜더하겠다.
 
 @login_required() # 로그인한 사람만 글을 쓸 수 있도록
 def new(request):
