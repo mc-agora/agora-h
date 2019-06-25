@@ -2,10 +2,28 @@
 {% load static %}
 {% block body %}
 
-<div class="">
-    <div class="main_13 main_common3"><img src="{% static 'GOV.png' %}" alt="GOVERNMENT"></div>
-    <div class="main_23 main_common3"><img src="{% static 'ASSEM.png' %}" alt="GOVERNMENT"></div>
-    <div class="main_33 main_common3"><img src="{% static 'ASSEM_REGU.png' %}" alt="GOVERNMENT"></div>
+<style>
+.threesteps {
+    float:left;
+    padding:10px;
+    width:33%
+}
+
+</style>
+<div  style="width:900px; margin:5 auto;">
+    <div class="threesteps">
+        <img src="{% static 'GOV.png' %}" alt="GOVERNMENT" style="width:100%;"><br>
+        <center><a href="">정부입법페이지</a></center>
+
+    </div>
+    <div class="threesteps">
+        <img src="{% static 'ASSEM.png' %}" alt="GOVERNMENT" style="width:100%; padding-top:50px; padding-bottom:10px;"><br><br><br><br>
+        <center><a href="">국회입법페이지</a></center>
+    </div>
+    <div class="threesteps">
+        <img src="{% static 'ASSEM_REGU.png' %}" alt="GOVERNMENT" style="width:100%;"><br>
+        <center><a href="">국회입법(규제관련)페이지</a></center>
+    </div>
 </div>
 
 {% endblock %}
