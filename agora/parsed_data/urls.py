@@ -5,4 +5,7 @@ app_name = 'parsed_data'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('GOV/', views.GOV, name='GOV'),
+    path('ASSEM/', views.ASSEM, name='ASSEM'),
+    path('ASSEM-REGU/', views.ASSEM_REGU, name='ASSEM_REGU'),
 ]

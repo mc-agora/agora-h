@@ -96,9 +96,9 @@
 
   <div class="row content" >
     <div class="col-sm-2 sidenav" >
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <p><a href="{% url 'parsed_data:GOV' %}">정부입법현황</a></p>
+      <p><a href="{% url 'parsed_data:ASSEM' %}">국회입법현황</a></p>
+      <p><a href="{% url 'parsed_data:ASSEM_REGU' %}">국회입법현황(규제관련)</a></p>
     </div>
     <div class="col-sm-8 text-left" style="background-color: #f1f1f1;">
             {%block body%}

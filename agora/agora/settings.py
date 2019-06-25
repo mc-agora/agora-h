@@ -147,3 +147,7 @@ CHANNEL_LAYERS = {
 AUTH_USER_MODEL = 'accounts.User'
 
 DATE_INPUT_FORMATS = ['%Y%m%d']
+
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'boards', 'static', 'images')
+]

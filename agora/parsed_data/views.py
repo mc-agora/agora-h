@@ -32,3 +32,47 @@ def index(request):
              }
     # embed()
     return render(request, 'parsed_data/index.html', context)
+@login_required()
+def GOV(request):
+    Raws = RawData.objects.all()
+    Raw_Page_Num = NumData.objects.all()
+    paginator1 = Paginator(Raws, 10)
+    page = request.GET.get('page')
+    Raws_lists = paginator1.get_page(page)
+
+    context={'Raws': Raws,
+             'Raws_lists': Raws_lists,
+             'Raw_Page_Num':Raw_Page_Num,
+             }
+    # embed()
+    return render(request, 'parsed_data/GOV.html', context)
+@login_required()
+def ASSEM(request):
+    Laws = LawData.objects.all()
+    Law_Page_Num = LawNum.objects.all()
+    paginator2 = Paginator(Laws, 10)
+    page = request.GET.get('page')
+    Laws_lists = paginator2.get_page(page)
+
+    context={'Laws':Laws,
+             'Laws_lists':Laws_lists,
+             'Law_Page_Num':Law_Page_Num,
+             }
+    # embed()
+    return render(request, 'parsed_data/ASSEM.html', context)
+
+@login_required()
+def ASSEM_REGU(request):
+    Regus = ReguData.objects.all()
+    Regu_page_Num = ReguNum.objects.all()
+    paginator3 = Paginator(Regus, 10)
+    page = request.GET.get('page')
+    Regus_lists = paginator3.get_page(page)
+
+    context={'Regus': Regus ,
+             'Regus_lists': Regus_lists,
+             'Regu_page_Num': Regu_page_Num,
+             }
+    # embed()
+    return render(request, 'parsed_data/ASSEM_REGU.html', context)
+

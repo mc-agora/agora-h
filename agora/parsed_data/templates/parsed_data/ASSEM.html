@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="text-center" style="color:black">국회 입법현황</h1>
+
+<table class="table table-hover" bgcolor="Cornsilk ">
+    <thead>
+        <tr>
+            <th class="text-center">의안명</th>
+            <th class="text-center">제안자</th>
+            <th class="text-center">의안번호</th>
+        </tr>
+    </thead>
+    {%for i in Laws_lists%}
+        <tbody>
+            <tr>
+                <td class="text-center">{{i.law_name}}</td>
+                <td class="text-center">{{i.law_people}}</td>
+                <td class="text-center">{{i.law_doc_num}}</td>
+            </tr>
+        </tbody>
+        {%endfor%}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if Laws_lists.has_previous %}
+            <a href="?page=1">[맨앞]</a>
+            <a href="?page={{ Laws_lists.previous_page_number }}">[이전]</a>
+        {% endif %}
+
+        <span class="current">{{ Laws_lists.number}}</span>
+        <span>/</span>
+        <span>{{ Laws_lists.paginator2.num_pages }}</span>
+
+        {% if Laws_lists.has_next %}
+            <a href="?page={{ Laws_lists.next_page_number }}">[다음]</a>
+            <a href="?page={{ Laws_lists.paginator2.num_pages }}">[맨뒤]</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
