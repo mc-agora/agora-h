@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1 class="text-center" style="color:black">국회 입법현황<규제관련></h1>
+<h1 class="text-center" style="color:black">국회 입법현황(규제관련)</h1>
 
 <table class="table table-hover" bgcolor="Cornsilk ">
     <thead>
@@ -21,7 +21,7 @@
                 <td class="text-center">{{i.regu_num}}</td>
             </tr>
         </tbody>
-        {%endfor%}
+        {% endfor %}
 </table>
 <div class="pagination">
     <span class="step-links">
@@ -32,11 +32,11 @@
 
         <span class="current">{{ Regus_lists.number}}</span>
         <span>/</span>
-        <span>{{ Regus_lists.paginator3.num_pages }}</span>
+        <span>{{ Regus_lists.paginator.num_pages }}</span>
 
         {% if Regus_lists.has_next %}
             <a href="?page={{ Regus_lists.next_page_number }}">[다음]</a>
-            <a href="?page={{ Regus_lists.paginator3.num_pages }}">[맨뒤]</a>
+            <a href="?page={{ Regus_lists.paginator.num_pages }}">[맨뒤]</a>
         {% endif %}
     </span>
 </div>

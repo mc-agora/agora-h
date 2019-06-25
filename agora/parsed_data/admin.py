@@ -1,7 +1,4 @@
-from django.contrib import admin
 
-# Register your models here.
-## parsed_data/admin.py
 from django.contrib import admin
 ## models에서 BlogData를 import 해옵니다.
 from .models import RawData, NumData , LawData, LawNum, ReguData, ReguNum
