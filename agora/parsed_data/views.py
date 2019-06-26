@@ -66,7 +66,7 @@ def ASSEM_REGU(request):
 def GOV_DETAIL(request, gov_pk):
     raw = get_object_or_404(RawData, pk=gov_pk)
 
-    boards = Pg_Board.objects.filter(rawdata=raw)[::-1]
+    boards = Pg_Board.objects.all()[::-1]
 
     boardcount = Pg_Board.objects.count()
     board_list = Pg_Board.objects.all().order_by('id')
