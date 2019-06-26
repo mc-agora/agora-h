@@ -33,6 +33,10 @@
         <td class="text-center" >추진현황</td>
         <td class="text-center" >{{ raw.raw_status }}</td>
     </tr>
+    <tr>
+        <td class="text-center">투표현황</td>
+        <td class="text-center">{% include 'parsed_data/_parsed.html' %}</td>
+    </tr>
     </tbody>
 </table>
 
@@ -40,8 +44,8 @@
 
 
 
-<div  style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:10px;width:450px;border:1px " >
+<div  style="width:900px; margin:5 auto;">
+    <div class="twosteps" style="float:left; margin-right:10px;width:400px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; >
             <h3 class="text-center">찬성</h3>
             <thead>
@@ -86,7 +90,7 @@
 
 <!-- ###################################### 반   대  #######################################-->
 
-    <div class="thwosteps" style="float:left; width:450px; border:1px ">
+    <div class="thwosteps" style="float:left; width:400px; border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid;>
             <h3 class="text-center">반대</h3>
             <thead>

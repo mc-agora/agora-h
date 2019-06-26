@@ -1,0 +1,27 @@
+<div style="width:910px; margin:5 auto;">
+
+    <div class="card-body" style="float:left; margin-right:10px;width:200px;border:1px ">
+        <a href="{% url 'parsed_data:like' raw.pk %}" class="card-link">
+            {% if user in raw.like_users.all %}
+                <i class="far fa-grin-beam fa-4x" style="color:black"></i>
+            {% else %}
+                <i class="far fa-grin-beam fa-4x" style="color:crimson"></i>
+            {% endif %}
+
+        </a>
+        <p class="card-text">{{ raw.like_users.count }}명이 찬성합니다</p>
+    </div>
+
+    <div class="card-body" style="float:left; margin-right:10px;width:600px;border:1px ">
+        <a href="{% url 'parsed_data:unlike' raw.pk %}" class="card-link">
+            {% if user in raw.unlike_users.all %}
+                <i class="far fa-angry fa-4x" style="color:black"></i>
+            {% else %}
+                <i class="far fa-angry fa-4x" style="color:crimson"></i>
+            {% endif %}
+
+        </a>
+        <p class="card-text">{{ raw.unlike_users.count }}명이 반대합니다</p>
+    </div>
+
+</div>

@@ -11,6 +11,8 @@ class RawData(models.Model):
     raw_department = models.CharField(max_length=200)
     raw_status = models.CharField(max_length=200)
 
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_parsed_data', blank=True)
+    unlike_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unlike_parsed_data', blank=True)
     def __str__(self):
     	return f'<{self.raw_num}/{self.raw_name}/{self.raw_attribue}/{self.raw_condition}/{self.raw_department}/{self.raw_status}>'
 
@@ -29,6 +31,8 @@ class LawData(models.Model):
     law_date = models.CharField(max_length=200)
     law_doc_num = models.CharField(max_length=200)
 
+    like2_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like2_parsed_data', blank=True)
+    unlike2_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unlike2_parsed_data', blank=True)
     def __str__(self):
     	return f'<{self.law_name}/{self.law_people}/{self.law_department}/{self.law_condition}/{self.law_date}/{self.law_doc_num}>'
 
@@ -50,7 +54,8 @@ class ReguData(models.Model):
     regu_condition = models.CharField(max_length=200)
     regu_num = models.CharField(max_length=200)
 
-
+    like3_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like3_parsed_data', blank=True)
+    unlike3_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unlike3_parsed_data', blank=True)
     def __str__(self):
     	return f'<{self.total_num}/{self.trash_val}/{self.regu_name}/{self.regu_paper_num}/{self.regu_department}/{self.regu_dates}/{self.regu_status}/{self.regu_condition}/{self.regu_num}>'
 

@@ -28,7 +28,13 @@ urlpatterns = [
     path('ASSEM-REGU/<int:regu_pk>/agree/<int:ra_pk>/', views.ra_agree, name='ra_agree'),
     path('ASSEM-REGU/<int:regu_pk>/rd_new/', views.rd_new, name='rd_new'),
     path('ASSEM-REGU/<int:regu_pk>/disagree/<int:rd_pk>/', views.ra_disagree, name='ra_disagree'),
-
+    #################################################################################################
+    path('<int:gov_pk>/like/', views.like, name='like'),
+    path('<int:assem_pk>/like2/', views.like2, name='like2'),
+    path('<int:regu_pk>/like3/', views.like3, name='like3'),
+    path('<int:gov_pk>/unlike/', views.unlike, name='unlike'),
+    path('<int:assem_pk>/unlike2/', views.unlike2, name='unlike2'),
+    path('<int:regu_pk>/unlike3/', views.unlike3, name='unlike3'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

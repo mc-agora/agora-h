@@ -324,3 +324,53 @@ def ra_disagree(request, regu_pk, rd_pk):
         'regu':regu,
     }
     return render(request, 'parsed_data/ra_d_detail.html', context)
+
+######################################################
+def like(request, gov_pk):
+    gov = get_object_or_404(RawData, pk=gov_pk)
+    if request.user in gov.like_users.all():
+        gov.like_users.remove(request.user)
+    else:
+        gov.like_users.add(request.user)
+        # embed()
+    return redirect('parsed_data:gov_detail', gov_pk)
+######################################################
+def like2(request, assem_pk):
+    assem = get_object_or_404(LawData, pk=assem_pk)
+    if request.user in assem.like2_users.all():
+        assem.like2_users.remove(request.user)
+    else:
+        assem.like2_users.add(request.user)
+    return redirect('parsed_data:assem_detail', assem_pk)
+####################################################
+def like3(request, regu_pk):
+    regu = get_object_or_404(ReguData, pk=regu_pk)
+    if request.user in regu.like3_users.all():
+        regu.like3_users.remove(request.user)
+    else:
+        regu.like3_users.add(request.user)                                  #
+    return redirect('parsed_data:regu_detail', regu_pk)
+####################################################
+def unlike(request, gov_pk):
+    gov = get_object_or_404(RawData, pk=gov_pk)
+    if request.user in gov.unlike_users.all():
+        gov.unlike_users.remove(request.user)
+    else:
+        gov.unlike_users.add(request.user)
+    return redirect('parsed_data:gov_detail', gov_pk)
+#########################################################
+def unlike2(request, assem_pk):
+    assem = get_object_or_404(LawData, pk=assem_pk)
+    if request.user in assem.unlike2_users.all():
+        assem.unlike2_users.remove(request.user)
+    else:
+        assem.unlike2_users.add(request.user)
+    return redirect('parsed_data:assem_detail', assem_pk)
+##########################################################
+def unlike3(request, regu_pk):
+    regu = get_object_or_404(ReguData, pk=regu_pk)
+    if request.user in regu.unlike3_users.all():
+        regu.unlike3_users.remove(request.user)
+    else:
+        regu.unlike3_users.add(request.user)
+    return redirect('parsed_data:regu_detail', regu_pk)
