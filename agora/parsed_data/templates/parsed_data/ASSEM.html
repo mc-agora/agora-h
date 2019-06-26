@@ -1,43 +1,78 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 <h1 class="text-center" style="color:black">국회 입법현황</h1>
 
-<table class="table table-hover" bgcolor="Cornsilk ">
-    <thead>
-        <tr>
-            <th class="text-center">의안명</th>
-            <th class="text-center">제안자</th>
-            <th class="text-center">의안번호</th>
-        </tr>
-    </thead>
-    {%for i in Laws_lists%}
-        <tbody>
-            <tr>
-                <td class="text-center"><a href="/parsed_data/ASSEM/{{ i.id }}/">{{i.law_name}}</a></td>
-                <td class="text-center">{{i.law_people}}</td>
-                <td class="text-center">{{i.law_doc_num}}</td>
-            </tr>
-        </tbody>
-        {% endfor %}
-</table>
+<div style="width:910px; margin:5 auto;">
+    <div class="twosteps" style="float:left; margin-right:20px;width:780px;border:1px ">
+        <table class="table table-hover" bgcolor="Cornsilk ">
+            <thead>
+                <tr>
+                    <th class="text-center">의안명</th>
+                    <th class="text-center">제안자</th>
+                    <th class="text-center">의안번호</th>
+                </tr>
+            </thead>
+            {%for i in Laws_lists%}
+                <tbody>
+                    <tr>
+                        <td class="text-center"><a href="/parsed_data/ASSEM/{{ i.id }}/">{{i.law_name}}</a></td>
+                        <td class="text-center">{{i.law_people}}</td>
+                        <td class="text-center">{{i.law_doc_num}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+        </table>
 
-<div class="pagination">
-    <span class="step-links">
-        {% if Laws_lists.has_previous %}
-            <a href="?page=1">[맨앞]</a>
-            <a href="?page={{ Laws_lists.previous_page_number }}">[이전]</a>
-        {% endif %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if Laws_lists.has_previous %}
+                    <a href="?page=1">[맨앞]</a>
+                    <a href="?page={{ Laws_lists.previous_page_number }}">[이전]</a>
+                {% endif %}
 
-        <span class="current">{{ Laws_lists.number}}</span>
-        <span>/</span>
-        <span>{{ Laws_lists.paginator.num_pages }}</span>
+                <span class="current">{{ Laws_lists.number}}</span>
+                <span>/</span>
+                <span>{{ Laws_lists.paginator.num_pages }}</span>
 
-        {% if Laws_lists.has_next %}
-            <a href="?page={{ Laws_lists.next_page_number }}">[다음]</a>
-            <a href="?page={{ Laws_lists.paginator.num_pages }}">[맨뒤]</a>
-        {% endif %}
-    </span>
+                {% if Laws_lists.has_next %}
+                    <a href="?page={{ Laws_lists.next_page_number }}">[다음]</a>
+                    <a href="?page={{ Laws_lists.paginator.num_pages }}">[맨뒤]</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="twosteps" style="float:left; width:100px;border:1px ">
+        <table class="table table-hover" bgcolor="Cornsilk ">
+            <thead>
+                <tr>
+                    <th class="text-center">세부내용</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>
+            {%for k in law_num_lists %}
+                        <td class="text-center"><a href='https://opinion.lawmaking.go.kr/gcom/nsmLmSts/out/{{k.page_num_num}}/detailRP' target="_blank">[바로가기]</a></td>
+                    </tr>
+            {%endfor%}
+                </tbody>
+
+        </table>
+
+        <div class="pagination2">
+            <span class="step-links">
+                {% if law_num_lists.has_previous %}
+                    <a href="?page=1"></a>
+                    <a href="?page={{ law_num_lists.previous_page_number }}"></a>
+                {% endif %}
+
+                {% if law_num_lists.has_next %}
+                    <a href="?page={{ law_num_lists.next_page_number }}"></a>
+                    <a href="?page={{ law_num_lists.paginator.num_pages }}"></a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
