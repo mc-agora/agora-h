@@ -7,21 +7,21 @@
 <table class="table table-hover" bgcolor="Cornsilk ">
     <thead>
         <tr>
-            <th class="text-center">번호</th>
-            <th class="text-center">제목</th>
-            <th class="text-center">날짜</th>
-            <th class="text-center">수정날짜</th>
-            <th class="text-center">좋아요</th>
+            <th class="text-center"style="font-family: 'Do Hyeon', sans-serif;">번호</th>
+            <th class="text-center"style="font-family: 'Do Hyeon', sans-serif;">제목</th>
+            <th class="text-center"style="font-family: 'Do Hyeon', sans-serif;">날짜</th>
+            <th class="text-center"style="font-family: 'Do Hyeon', sans-serif;">수정날짜</th>
+            <th class="text-center"style="font-family: 'Do Hyeon', sans-serif;">좋아요</th>
         </tr>
     </thead>
     {% for board in lists %}    <!-- communication_boards 에서 lists로 변경 -->
         <tbody>
             <tr>
-                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.id}}</a></td>
-                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.title}}</a> ({{ board.comments_rn.all | length }})</td>
-                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.created_at}}</a></td>
-                <td class="text-center"><a href="/boards/{{ board.pk }}/">{{board.updated_at}}</a></td>
-                <td class="text-center">{% include 'boards/_board.html' %}</td>
+                <td class="text-center"><a href="/boards/{{ board.pk }}/" style="font-family: 'Do Hyeon', sans-serif;">{{board.id}}</a></td>
+                <td class="text-center"><a href="/boards/{{ board.pk }}/"style="font-family: 'Do Hyeon', sans-serif;">{{board.title}}</a> ({{ board.comments_rn.all | length }})</td>
+                <td class="text-center"><a href="/boards/{{ board.pk }}/"style="font-family: 'Do Hyeon', sans-serif;">{{board.created_at}}</a></td>
+                <td class="text-center"><a href="/boards/{{ board.pk }}/"style="font-family: 'Do Hyeon', sans-serif;">{{board.updated_at}}</a></td>
+                <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">{% include 'boards/_board.html' %}</td>
             </tr>
         </tbody>
 
@@ -31,26 +31,26 @@
 
 
     {% if user.is_authenticated %}
-        <a href="{% url 'boards:new' %}"><input type="button" value="글작성"></a>
+        <a href="{% url 'boards:new' %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="글작성"></a>
     {% else %}
-        <a href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+        <a href="{% url 'accounts:login' %}" style="font-family: 'Do Hyeon', sans-serif;">로그인이 필요합니다</a>
     {% endif %}
 
 
 <div class="pagination">
     <span class="step-links">
         {% if lists.has_previous %}
-            <a href="?page=1">[맨앞]</a>
-            <a href="?page={{ lists.previous_page_number }}">[이전]</a>
+            <a href="?page=1" style="font-family: 'Do Hyeon', sans-serif;">[맨앞]</a>
+            <a href="?page={{ lists.previous_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">[이전]</a>
         {% endif %}
 
-        <span class="current">{{ lists.number}}</span>
+        <span class="current" style="font-family: 'Do Hyeon', sans-serif;">{{ lists.number}}</span>
         <span>/</span>
-        <span>{{ lists.paginator.num_pages }}</span>
+        <span style="font-family: 'Do Hyeon', sans-serif;">{{ lists.paginator.num_pages }}</span>
 
         {% if lists.has_next %}
-            <a href="?page={{ lists.next_page_number }}">[다음]</a>
-            <a href="?page={{ lists.paginator.num_pages }}">[맨뒤]</a>
+            <a href="?page={{ lists.next_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">[다음]</a>
+            <a href="?page={{ lists.paginator.num_pages }}" style="font-family: 'Do Hyeon', sans-serif;">[맨뒤]</a>
         {% endif %}
     </span>
 </div>

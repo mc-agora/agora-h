@@ -2,33 +2,33 @@
 
 {% block body %}
 
-<h1 class="text-center" style="color:black">규제관련 반대 {{ board.pk }}번 게시판 글</h1>
+<h1 class="text-center" style="font-family: 'Do Hyeon', sans-serif;">규제관련 반대 {{ board.pk }}번 게시판 글</h1>
 <hr>
 
 <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
     <thead>
         <tr>
-            <th style=width:100px; class="text-center">목록</th>
-            <th style=width:500px; class="text-center">내용</th>
+            <th style="width:100px;font-family: 'Do Hyeon', sans-serif;" class="text-center">목록</th>
+            <th style="width:500px;font-family: 'Do Hyeon', sans-serif;" class="text-center">내용</th>
         </tr>
     </thead>
     <tbody>
     <tr>
-        <td class="text-center">글 번호</td>
-        <td class="text-center">{{ board.pk }}</td>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">글 번호</td>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">{{ board.pk }}</td>
     </tr>
     <tr>
-        <td class="text-center">글 제목</td>
-        <td class="text-center">{{ board.title }}</td>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">글 제목</td>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">{{ board.title }}</td>
     </tr>
 
     <tr>
-        <td class="text-center" >글 내용</td>
-        <td class="text-center" style="word-break:break-all;" wrap="hard">{{ board.content }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">글 내용</td>
+        <td class="text-center" style="word-break:break-all;font-family: 'Do Hyeon', sans-serif;" wrap="hard">{{ board.content }}</td>
     </tr>
     </tbody>
 </table>
-<a href="/parsed_data/ASSEM-REGU/{{regu.id}}" class="btn btn-primary">뒤로</a>
+<a href="/parsed_data/ASSEM-REGU/{{regu.id}}" class="btn btn-primary" style="font-family: 'Do Hyeon', sans-serif;">뒤로</a>
 <!--
 <center>
 
