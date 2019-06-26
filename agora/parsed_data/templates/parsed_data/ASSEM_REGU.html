@@ -4,13 +4,12 @@
 <h1 class="text-center" style="color:black">국회 입법현황(규제관련)</h1>
 
 <div style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:20px;width:780px;border:1px ">
+    <div class="twosteps" style="float:left; margin-right:20px;width:700px;border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk ">
             <thead>
                 <tr>
                     <th class="text-center">글번호</th>
                     <th class="text-center">법률안</th>
-                    <th class="text-center">제안자</th>
                     <th class="text-center">의안번호</th>
                 </tr>
             </thead>
@@ -19,7 +18,6 @@
                     <tr>
                         <td class="text-center">{{i.total_num}}</td>
                         <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ i.id }}/">{{i.regu_name}}</a></td>
-                        <td class="text-center">{{i.regu_dates}}</td>
                         <td class="text-center">{{i.regu_num}}</td>
                     </tr>
                 </tbody>
