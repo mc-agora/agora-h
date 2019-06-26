@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RawData, LawData, ReguData, Pg_Board, Pg_Comment, Pg_Board2, Pg_Comment2, Pa_Board, Pa_Board2, Pa_Comment, Pa_Comment2,Par_Board, Par_Board2, Par_Comment, Par_Comment2
+from .models import RawData, LawData, ReguData, Pg_Board, Pg_Comment, Pg_Board2, Pg_Comment2, Pa_Board, Pa_Board2, Pa_Comment, Pa_Comment2,Par_Board, Par_Board2, Par_Comment, Par_Comment2, NumData, LawNum,ReguNum
 from .forms import Pg_BoardForm, Pg_CommentForm, Pg_BoardForm2, Pg_CommentForm2, Pa_BoardForm, Pa_BoardForm2, Pa_CommentForm, Pa_CommentForm2, Par_BoardForm, Par_BoardForm2, Par_CommentForm, Par_CommentForm2
 
 #from boards.models import Board, Comment
@@ -17,33 +17,50 @@ def index(request):
 @login_required()
 def GOV(request):
     Raws = RawData.objects.all()[::-1]
+    raw_num = NumData.objects.all()[::-1]
+
     paginator = Paginator(Raws, 10)
     page = request.GET.get('page')
     Raws_lists = paginator.get_page(page)
 
-    context = {'Raws': Raws, 'Raws_lists': Raws_lists,}
+    paginator2 = Paginator(raw_num, 10)
+    page2 = request.GET.get('page')
+    raw_num_lists = paginator2.get_page(page2)
+
+
+    context = {'Raws': Raws, 'Raws_lists': Raws_lists,'raw_num':raw_num,'raw_num_lists':raw_num_lists}
     return render(request, 'parsed_data/GOV.html', context)
 
 
 @login_required()
 def ASSEM(request):
     Laws = LawData.objects.all()[::-1]
+    law_num = LawNum.objects.all()[::-1]
     paginator = Paginator(Laws, 10)
     page = request.GET.get('page')
     Laws_lists = paginator.get_page(page)
 
-    context = {'Laws': Laws, 'Laws_lists': Laws_lists}
+    paginator2 = Paginator(law_num, 10)
+    page2 = request.GET.get('page')
+    law_num_lists = paginator2.get_page(page2)
+
+    context = {'Laws': Laws, 'Laws_lists': Laws_lists, 'law_num':law_num,'law_num_lists':law_num_lists}
     return render(request, 'parsed_data/ASSEM.html', context)
 
 
 @login_required()
 def ASSEM_REGU(request):
     Regus = ReguData.objects.all()[::-1]
+    regu_num = ReguNum.objects.all()[::-1]
     paginator = Paginator(Regus, 10)
     page = request.GET.get('page')
     Regus_lists = paginator.get_page(page)
 
-    context = {'Regus': Regus, 'Regus_lists': Regus_lists}
+    paginator2 = Paginator(regu_num, 10)
+    page2 = request.GET.get('page')
+    regu_num_lists = paginator2.get_page(page2)
+
+    context = {'Regus': Regus, 'Regus_lists': Regus_lists, 'regu_num':regu_num,'regu_num_lists':regu_num_lists}
     return render(request, 'parsed_data/ASSEM_REGU.html', context)
 
 
@@ -51,15 +68,25 @@ def ASSEM_REGU(request):
 def GOV_DETAIL(request, gov_pk):
     raw = get_object_or_404(RawData, pk=gov_pk)
     boards = Pg_Board.objects.all()[::-1]
+
     boardcount = Pg_Board.objects.count()
     board_list = Pg_Board.objects.all().order_by('id')
 
+    paginator = Paginator(boards, 5)
+    page = request.GET.get('page')
+    raw_lists = paginator.get_page(page)
+
     boards2 = Pg_Board2.objects.all()[::-1]
     boardcount2 = Pg_Board2.objects.count()
+
     board_list2 = Pg_Board2.objects.all().order_by('id')
+    paginator2 = Paginator(boards2, 5)
+    page2 = request.GET.get('page')
+    raw_lists2 = paginator2.get_page(page2)
+
 
     context = {'raw': raw, 'boardcount': boardcount, 'board_list':board_list, 'boards':boards,
-               'boardcount2': boardcount2, 'board_list2':board_list2, 'boards2':boards2}
+               'boardcount2': boardcount2, 'board_list2':board_list2, 'boards2':boards2,'raw_lists':raw_lists,"raw_lists2":raw_lists2}
     return render(request, 'parsed_data/gov_detail.html', context)
 
 @login_required()
@@ -68,13 +95,19 @@ def ASSEM_DETAIL(request, assem_pk):
     boards = Pa_Board.objects.all()[::-1]
     boardcount = Pa_Board.objects.count()
     board_list = Pa_Board.objects.all().order_by('id')
+    paginator = Paginator(boards, 5)
+    page = request.GET.get('page')
+    law_lists = paginator.get_page(page)
 
     boards2 = Pa_Board2.objects.all()[::-1]
     boardcount2 = Pa_Board2.objects.count()
     board_list2 = Pa_Board2.objects.all().order_by('id')
+    paginator2 = Paginator(boards2, 5)
+    page2 = request.GET.get('page')
+    law_lists2 = paginator2.get_page(page2)
 
     context = {'law': law, 'boardcount': boardcount, 'board_list': board_list, 'boards':boards,
-               'boardcount2': boardcount2, 'board_list2': board_list2, 'boards2':boards2}
+               'boardcount2': boardcount2, 'board_list2': board_list2, 'boards2':boards2,'law_lists':law_lists,"law_lists2":law_lists2}
     return render(request, 'parsed_data/assem_detail.html', context)
 
 @login_required()
@@ -84,13 +117,20 @@ def REGU_DETAIL(request, regu_pk):
     boards = Par_Board.objects.all()[::-1]
     boardcount = Par_Board.objects.count()
     board_list = Par_Board.objects.all().order_by('id')
+    paginator = Paginator(boards, 5)
+    page = request.GET.get('page')
+    regu_lists = paginator.get_page(page)
 
     boards2 = Par_Board2.objects.all()[::-1]
     boardcount2 = Par_Board2.objects.count()
     board_list2 = Par_Board2.objects.all().order_by('id')
+    paginator2 = Paginator(boards2, 5)
+    page2 = request.GET.get('page')
+    regu_lists2 = paginator2.get_page(page2)
+
 
     context = {'regu': regu, 'boardcount': boardcount, 'board_list': board_list, 'boards':boards,
-               'boardcount2': boardcount2, 'board_list2': board_list2, 'boards2':boards2}
+               'boardcount2': boardcount2, 'board_list2': board_list2, 'boards2':boards2,'regu_lists':regu_lists,"regu_lists2":regu_lists2}
     return render(request, 'parsed_data/regu_detail.html', context)
 
 ################################ GOV ###################################################
