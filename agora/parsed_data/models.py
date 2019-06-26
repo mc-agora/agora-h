@@ -65,12 +65,6 @@ class ReguNum(models.Model):
     def __str__(self):
         return f'<{self.Link_Page_num}>'
 
-
-
-
-
-
-
 class Pg_Board(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
@@ -79,7 +73,6 @@ class Pg_Board(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_pg', blank=True)
-
 
 class Pg_Comment(models.Model):
     content = models.CharField(max_length=200)
@@ -175,5 +168,3 @@ class Par_Comment2(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     board = models.ForeignKey(Par_Board2, on_delete=models.CASCADE, related_name='par_comments2')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-
