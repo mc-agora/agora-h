@@ -2,9 +2,9 @@
     <div class="card-body" style="float:left; margin-right:10px;width:200px;border:1px ">
         <a href="{% url 'parsed_data:like3' regu.pk %}" class="card-link">
             {% if user in regu.like3_users.all %}
-                <i class="far fa-grin-beam fa-4x" style="color:black"></i>
-            {% else %}
                 <i class="far fa-grin-beam fa-4x" style="color:crimson"></i>
+            {% else %}
+                <i class="far fa-grin-beam fa-4x" style="color:black"></i>
             {% endif %}
 
         </a>
@@ -14,9 +14,9 @@
     <div class="card-body" style="float:left; margin-right:10px;width:600px;border:1px ">
         <a href="{% url 'parsed_data:unlike3' regu.pk %}" class="card-link">
             {% if user in regu.unlike3_users.all %}
-                <i class="far fa-angry fa-4x" style="color:black"></i>
-            {% else %}
                 <i class="far fa-angry fa-4x" style="color:crimson"></i>
+            {% else %}
+                <i class="far fa-angry fa-4x" style="color:black"></i>
             {% endif %}
 
         </a>

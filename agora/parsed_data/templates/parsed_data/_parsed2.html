@@ -3,9 +3,9 @@
     <div class="card-body" style="float:left; margin-right:10px;width:200px;border:1px ">
         <a href="{% url 'parsed_data:like2' law.pk %}" class="card-link">
             {% if user in law.like2_users.all %}
-                <i class="far fa-grin-beam fa-4x" style="color:black"></i>
-            {% else %}
                 <i class="far fa-grin-beam fa-4x" style="color:crimson"></i>
+            {% else %}
+                <i class="far fa-grin-beam fa-4x" style="color:black"></i>
             {% endif %}
 
         </a>
@@ -17,9 +17,9 @@
 
         <a href="{% url 'parsed_data:unlike2' law.pk %}" class="card-link">
             {% if user in law.unlike2_users.all %}
-                <i class="far fa-angry fa-4x" style="color:black"></i>
-            {% else %}
                 <i class="far fa-angry fa-4x" style="color:crimson"></i>
+            {% else %}
+                <i class="far fa-angry fa-4x" style="color:black"></i>
             {% endif %}
 
         </a>
