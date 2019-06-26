@@ -33,11 +33,17 @@
         <td class="text-center" >의안번호</td>
         <td class="text-center" >{{ law.law_doc_num  }}</td>
     </tr>
+    <tr>
+        <td class="text-center">투표현황</td>
+        <td class="text-center">{% include 'parsed_data/_parsed2.html' %}</td>
+    </tr>
     </tbody>
 </table>
 
 <!-- ###################################### 찬  성  #######################################-->
-<div  style="width:910px; margin:5 auto;">
+
+<div  style="width:900px; margin:5 auto;">
+
     <div class="twosteps" style="float:left; margin-right:10px;width:400px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; >
             <h3 class="text-center">찬성</h3>
