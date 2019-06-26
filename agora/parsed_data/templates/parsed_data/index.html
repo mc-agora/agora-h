@@ -10,19 +10,20 @@
 }
 
 </style>
-<div  style="width:900px; margin:5 auto;">
+
+<div  style="width:900px; margin:5 auto; padding-top:70px;">
     <div class="threesteps">
         <img src="{% static 'GOV.png' %}" alt="GOVERNMENT" style="width:100%;"><br>
-        <center><a href="{% url 'parsed_data:GOV' %}" class="btn btn-primary">정부입법 페이지</a></center>
+        <center><a href="{% url 'parsed_data:GOV' %}" class="btn btn-primary" style="font-family: 'Do Hyeon', sans-serif;">정부입법 페이지</a></center>
 
     </div>
     <div class="threesteps">
         <img src="{% static 'ASSEM.png' %}" alt="GOVERNMENT" style="width:100%; padding-top:80px; padding-bottom:22px;"><br><br>
-        <center><a href="{% url 'parsed_data:ASSEM' %}" class="btn btn-primary">국회입법 페이지</a></center>
+        <center><a href="{% url 'parsed_data:ASSEM' %}" class="btn btn-primary" style="font-family: 'Do Hyeon', sans-serif;">국회입법 페이지</a></center>
     </div>
     <div class="threesteps">
         <img src="{% static 'ASSEM_REGU.png' %}" alt="GOVERNMENT" style="width:100%;"><br>
-        <center><a href="{% url 'parsed_data:ASSEM_REGU' %}" class="btn btn-primary">국회입법(규제관련)페이지</a></center>
+        <center><a href="{% url 'parsed_data:ASSEM_REGU' %}" class="btn btn-primary" style="font-family: 'Do Hyeon', sans-serif;">국회입법(규제관련)페이지</a></center>
     </div>
 </div>
 

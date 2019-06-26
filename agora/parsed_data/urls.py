@@ -28,6 +28,15 @@ urlpatterns = [
     path('ASSEM-REGU/<int:regu_pk>/agree/<int:ra_pk>/', views.ra_agree, name='ra_agree'),
     path('ASSEM-REGU/<int:regu_pk>/rd_new/', views.rd_new, name='rd_new'),
     path('ASSEM-REGU/<int:regu_pk>/disagree/<int:rd_pk>/', views.ra_disagree, name='ra_disagree'),
+
+    #################################################################################################
+    path('<int:gov_pk>/like/', views.like, name='like'),
+    path('<int:assem_pk>/like2/', views.like2, name='like2'),
+    path('<int:regu_pk>/like3/', views.like3, name='like3'),
+    path('<int:gov_pk>/unlike/', views.unlike, name='unlike'),
+    path('<int:assem_pk>/unlike2/', views.unlike2, name='unlike2'),
+    path('<int:regu_pk>/unlike3/', views.unlike3, name='unlike3'),
+
     ##############################  like  #############################################
     path('GOV/<int:gov_pk>/likepg/', views.likepg, name='likepg'),
     path('GOV/<int:gov_pk>/likepg2/', views.likepg2, name='likepg2'),
@@ -35,6 +44,7 @@ urlpatterns = [
     path('ASSEM/<int:assem_pk>/likepa2/', views.likepa2, name='likepa2'),
     path('ASSEM-REGU/<int:regu_pk>/likepar/', views.likepar, name='likepar'),
     path('ASSEM-REGU/<int:regu_pk>/likepar2/', views.likepar2, name='likepar2'),
+
 
 ]
 

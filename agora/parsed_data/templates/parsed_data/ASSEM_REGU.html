@@ -1,26 +1,24 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1 class="text-center" style="color:black">국회 입법현황(규제관련)</h1>
+<h1 class="text-center" style="font-family: 'Do Hyeon', sans-serif;">국회 입법현황(규제관련)</h1>
 
 <div style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:20px;width:780px;border:1px ">
+    <div class="twosteps" style="float:left; margin-right:20px;width:700px;border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk ">
             <thead>
                 <tr>
-                    <th class="text-center">글번호</th>
-                    <th class="text-center">법률안</th>
-                    <th class="text-center">제안자</th>
-                    <th class="text-center">의안번호</th>
+                    <th class="text-center" style="font-family: 'Do Hyeon', sans-serif;">글번호</th>
+                    <th class="text-center" style="font-family: 'Do Hyeon', sans-serif;">법률안</th>
+                    <th class="text-center" style="font-family: 'Do Hyeon', sans-serif;">의안번호</th>
                 </tr>
             </thead>
             {%for i in Regus_lists%}
                 <tbody>
                     <tr>
-                        <td class="text-center">{{i.total_num}}</td>
-                        <td class="text-center"><a href="/parsed_data/ASSEM-REGU/{{ i.id }}/">{{i.regu_name}}</a></td>
-                        <td class="text-center">{{i.regu_dates}}</td>
-                        <td class="text-center">{{i.regu_num}}</td>
+                        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{i.total_num}}</td>
+                        <td class="text-center"><a class="btn btn-link btn-block" href="/parsed_data/ASSEM-REGU/{{ i.id }}/" style="font-family: 'Do Hyeon', sans-serif;">{{i.regu_name}}</a></td>
+                        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{i.regu_num}}</td>
                     </tr>
                 </tbody>
                 {% endfor %}
@@ -28,8 +26,8 @@
         <div class="pagination">
             <span class="step-links">
                 {% if Regus_lists.has_previous %}
-                    <a href="?page=1">[맨앞]</a>
-                    <a href="?page={{ Regus_lists.previous_page_number }}">[이전]</a>
+                    <a class="btn btn-info btn-xs" href="?page=1" style="font-family: 'Do Hyeon', sans-serif;">맨앞</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ Regus_lists.previous_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">이전</a>
                 {% endif %}
 
                 <span class="current">{{ Regus_lists.number}}</span>
@@ -37,8 +35,8 @@
                 <span>{{ Regus_lists.paginator.num_pages }}</span>
 
                 {% if Regus_lists.has_next %}
-                    <a href="?page={{ Regus_lists.next_page_number }}">[다음]</a>
-                    <a href="?page={{ Regus_lists.paginator.num_pages }}">[맨뒤]</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ Regus_lists.next_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">다음</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ Regus_lists.paginator.num_pages }}" style="font-family: 'Do Hyeon', sans-serif;">맨뒤</a>
                 {% endif %}
             </span>
         </div>
@@ -48,13 +46,13 @@
         <table class="table table-hover" bgcolor="Cornsilk ">
             <thead>
                 <tr>
-                    <th class="text-center">세부내용</th>
+                    <th class="text-center" style="font-family: 'Do Hyeon', sans-serif;">세부내용</th>
                 </tr>
             </thead>
                 <tbody>
                     <tr>
             {%for k in regu_num_lists %}
-                        <td class="text-center"><a href='https://opinion.lawmaking.go.kr/gcom/sts/better/{{k.Link_Page_num}}' target="_blank">[바로가기]</a></td>
+                        <td class="text-center"><a class="btn btn-info btn-block" href='https://opinion.lawmaking.go.kr/gcom/sts/better/{{k.Link_Page_num}}' target="_blank" style="font-family: 'Do Hyeon', sans-serif;">바로가기</a></td>
                     </tr>
             {%endfor%}
                 </tbody>

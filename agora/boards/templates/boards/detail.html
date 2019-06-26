@@ -2,36 +2,36 @@
 
 {% block body %}
 
-<h1 class="text-center" style="color:black">{{ board.pk }}번 게시판 글</h1>
+<h1 class="text-center" style="color:black;font-family: 'Do Hyeon', sans-serif;">{{ board.pk }}번 게시판 글</h1>
 <hr>
 
 <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
     <thead>
         <tr>
-            <th style=width:100px; class="text-center">목록</th>
-            <th style=width:500px; class="text-center">내용</th>
+            <th style="width:100px;font-family: 'Do Hyeon', sans-serif;" class="text-center">목록</th>
+            <th style="width:500px;font-family: 'Do Hyeon', sans-serif;" class="text-center">내용</th>
         </tr>
     </thead>
     <tbody>
     <tr>
-        <td class="text-center">글 번호</td>
-        <td class="text-center">{{ board.pk }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">글 번호</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ board.pk }}</td>
     </tr>
     <tr>
-        <td class="text-center">글 제목</td>
-        <td class="text-center">{{ board.title }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">글 제목</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ board.title }}</td>
     </tr>
     <tr>
-        <td class="text-center">작성 시각</td>
-        <td class="text-center">{{ board.created_at }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">작성 시각</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ board.created_at }}</td>
     </tr>
     <tr>
-        <td class="text-center" >수정 시각</td>
-        <td class="text-center">{{ board.updated_at }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">수정 시각</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ board.updated_at }}</td>
     </tr>
     <tr>
-        <td class="text-center" >글 내용</td>
-        <td class="text-center" style="word-break:break-all;" wrap="hard">{{ board.content }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">글 내용</td>
+        <td class="text-center" style="word-break:break-all;font-family: 'Do Hyeon', sans-serif;" wrap="hard">{{ board.content }}</td>
     </tr>
     </tbody>
 </table>
@@ -40,11 +40,11 @@
 
 <form action="{% url 'boards:delete' board.pk %}" method="POST">
     {% csrf_token %}
-    <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>
+    <a href="{% url 'boards:index' %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="메인"></a>
     <!-- 글을 쓴 유저만 수정과 삭제가 가능하도록 조건을 걺  -->
     {% if user == board.user %}
-        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
-        <input type="submit" value="삭제">
+        <a href="{% url 'boards:edit' board.pk %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="수정"></a>
+        <input type="submit" value="삭제" style="font-family: 'Do Hyeon', sans-serif;">
     {% endif %}
 </form>
 </center>
@@ -52,22 +52,22 @@
 {% include 'boards/_profile.html' %}
 
 <center>
-    <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
+    <p><strong style="font-family: 'Do Hyeon', sans-serif;">댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
     {% if user.is_authenticated %}
         {% for comment in comments %}
-            <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>
+            <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}" style="font-family: 'Do Hyeon', sans-serif;">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>
             {% if comment.user == request.user %}
-                <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
+                <a href="{% url 'boards:comments_edit' board.pk comment.pk %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="댓글수정"></a>
                 <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
                     {% csrf_token %}
-                    <input type="submit" value="댓글삭제">
+                    <input type="submit" value="댓글삭제" style="font-family: 'Do Hyeon', sans-serif;">
                 </form>
             {% endif %}
         {% empty %}
-            <p>댓글이 없습니다. </p>
+            <p style="font-family: 'Do Hyeon', sans-serif;">댓글이 없습니다. </p>
         {% endfor %}
     {% else %}
-        <a href="{% url 'accounts:login' %}">로그인이 필요합니다.</a>
+        <a href="{% url 'accounts:login' %}" style="font-family: 'Do Hyeon', sans-serif;">로그인이 필요합니다.</a>
     {% endif %}
 
 </center>
@@ -77,7 +77,7 @@
     <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <input type="submit" value="댓글작성">
+        <input type="submit" value="댓글작성" style="font-family: 'Do Hyeon', sans-serif;">
     </form>
 </center>
 

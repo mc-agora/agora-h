@@ -2,57 +2,63 @@
 
 {% block body %}
 
-<h1 class="text-center" style="color:black">{{ law.law_name }}</h1>
+<h1 class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_name }}</h1>
 <hr>
 <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
 
     <thead>
         <tr>
-            <th style=width:100px; class="text-center">목록</th>
-            <th style=width:500px; class="text-center">내용</th>
+            <th style="width:100px;font-family: 'Do Hyeon', sans-serif;" class="text-center">목록</th>
+            <th style="width:500px;font-family: 'Do Hyeon', sans-serif;" class="text-center">내용</th>
         </tr>
     </thead>
     <tbody>
     <tr>
-        <td class="text-center">제안자</td>
-        <td class="text-center">{{ law.law_people }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">제안자</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_people }}</td>
     </tr>
     <tr>
-        <td class="text-center">상임위원회</td>
-        <td class="text-center">{{ law.law_department  }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">상임위원회</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_department  }}</td>
     </tr>
     <tr>
-        <td class="text-center" >국회현황</td>
-        <td class="text-center">{{ law.law_condition }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">국회현황</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_condition }}</td>
     </tr>
     <tr>
-        <td class="text-center" >의결현황</td>
-        <td class="text-center" >{{ law.law_date }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">의결현황</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_date }}</td>
     </tr>
     <tr>
-        <td class="text-center" >의안번호</td>
-        <td class="text-center" >{{ law.law_doc_num  }}</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">의안번호</td>
+        <td class="text-center" style="font-family: 'Do Hyeon', sans-serif;">{{ law.law_doc_num  }}</td>
+    </tr>
+    <tr>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">투표현황</td>
+        <td class="text-center"style="font-family: 'Do Hyeon', sans-serif;">{% include 'parsed_data/_parsed2.html' %}</td>
     </tr>
     </tbody>
 </table>
 
 <!-- ###################################### 찬  성  #######################################-->
-<div  style="width:910px; margin:5 auto;">
+
+<div  style="width:900px; margin:5 auto;">
+
     <div class="twosteps" style="float:left; margin-right:10px;width:400px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; >
-            <h3 class="text-center">찬성</h3>
+            <h3 class="text-center"style="font-family: 'Do Hyeon', sans-serif;">찬성</h3>
             <thead>
                 <tr>
-                    <th style=width:100px; class="text-center">번호</th>
-                    <th style=width:300px; class="text-center">제목</th>
-                    <th style=width:150px; class="text-center">좋아요</th>
+                    <th style="width:100px;font-family: 'Do Hyeon', sans-serif;" class="text-center">번호</th>
+                    <th style="width:300px;font-family: 'Do Hyeon', sans-serif;" class="text-center">제목</th>
+                    <th style="width:150px;font-family: 'Do Hyeon', sans-serif;" class="text-center">좋아요</th>
                 </tr>
             </thead>
             <tbody>
                 {%for i in law_lists%}
                 <tr>
-                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}">{{i.id}}</a></td>
-                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}">{{i.title}}</a></td>
+                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}" style="font-family: 'Do Hyeon', sans-serif;">{{i.id}}</a></td>
+                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}" style="font-family: 'Do Hyeon', sans-serif;">{{i.title}}</a></td>
                     <td class="text-center">
                             <div class="card-body">
                                 <a href="{% url 'parsed_data:likepa' i.pk %}" class="card-link">
@@ -62,7 +68,7 @@
                                         <i class="far fa-heart fa-lg" style="color:black"></i>
                                     {% endif %}
                                 </a>
-                                <p class="card-text">{{ i.like_users.count }} 명이 좋아합니다</p>
+                                <p class="card-text" style="font-family: 'Do Hyeon', sans-serif;">{{ i.like_users.count }} 명이 좋아합니다</p>
                             </div>
                     </td>
                 </tr>
@@ -72,25 +78,25 @@
         <div class="pagination">
             <span class="step-links">
                 {% if law_lists.has_previous %}
-                    <a href="?page=1">[맨앞]</a>
-                    <a href="?page={{ law_lists.previous_page_number }}">[이전]</a>
+                    <a class="btn btn-info btn-xs" href="?page=1" style="font-family: 'Do Hyeon', sans-serif;">맨앞</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists.previous_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">이전</a>
                 {% endif %}
 
-                <span class="current">{{ law_lists.number}}</span>
+                <span class="current" style="font-family: 'Do Hyeon', sans-serif;">{{ law_lists.number}}</span>
                 <span>/</span>
-                <span>{{ law_lists.paginator.num_pages }}</span>
+                <span style="font-family: 'Do Hyeon', sans-serif;">{{ law_lists.paginator.num_pages }}</span>
 
                 {% if law_lists.has_next %}
-                    <a href="?page={{ law_lists.next_page_number }}">[다음]</a>
-                    <a href="?page={{ law_lists.paginator.num_pages }}">[맨뒤]</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists.next_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">다음</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists.paginator.num_pages }}" style="font-family: 'Do Hyeon', sans-serif;">맨뒤</a>
                 {% endif %}
             </span>
         </div>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'parsed_data:aa_new' law.id %}"><input type="button" value="글작성"></a>
+        <a class="btn btn-success" href="{% url 'parsed_data:aa_new' law.id %}" style="font-family: 'Do Hyeon', sans-serif;">글작성</a>
     {% else %}
-        <a href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+        <a href="{% url 'accounts:login' %}" style="font-family: 'Do Hyeon', sans-serif;">로그인이 필요합니다</a>
     {% endif %}
     </div>
 
@@ -98,19 +104,19 @@
 
     <div class="thwosteps" style="float:left; width:400px; border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid;>
-            <h3 class="text-center">반대</h3>
+            <h3 class="text-center" style="font-family: 'Do Hyeon', sans-serif;">반대</h3>
             <thead>
                 <tr>
-                    <th style=width:100px; class="text-center">번호</th>
-                    <th style=width:300px; class="text-center">내용</th>
-                    <th style=width:150px; class="text-center">좋아요</th>
+                    <th style="width:100px;font-family: 'Do Hyeon', sans-serif;" class="text-center">번호</th>
+                    <th style="width:300px;font-family: 'Do Hyeon', sans-serif;" class="text-center">내용</th>
+                    <th style="width:150px;font-family: 'Do Hyeon', sans-serif;" class="text-center">좋아요</th>
                 </tr>
             </thead>
             <tbody>
                 {%for k in law_lists2%}
                 <tr>
-                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}">{{k.id}}</a></td>
-                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}">{{k.title}}</a></td>
+                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}" style="font-family: 'Do Hyeon', sans-serif;">{{k.id}}</a></td>
+                    <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}" style="font-family: 'Do Hyeon', sans-serif;">{{k.title}}</a></td>
                     <td class="text-center">
                             <div class="card-body">
                                 <a href="{% url 'parsed_data:likepa2' k.pk %}" class="card-link">
@@ -120,18 +126,18 @@
                                         <i class="far fa-heart fa-lg" style="color:black"></i>
                                     {% endif %}
                                 </a>
-                                <p class="card-text">{{ k.like_users.count }} 명이 좋아합니다</p>
+                                <p class="card-text" style="font-family: 'Do Hyeon', sans-serif;">{{ k.like_users.count }} 명이 좋아합니다</p>
                             </div>
                     </td>
                 </tr>
                 {%endfor%}
             </tbody>
         </table>
-        <div class="pagination2">
+        <div class="pagination">
             <span class="step-links">
                 {% if law_lists2.has_previous %}
-                    <a href="?page=1">[맨앞]</a>
-                    <a href="?page={{ law_lists2.previous_page_number }}">[이전]</a>
+                    <a class="btn btn-info btn-xs" href="?page=1" style="font-family: 'Do Hyeon', sans-serif;">맨앞</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists2.previous_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">이전</a>
                 {% endif %}
 
                 <span class="current">{{ law_lists2.number}}</span>
@@ -139,15 +145,15 @@
                 <span>{{ law_lists2.paginator.num_pages }}</span>
 
                 {% if law_lists2.has_next %}
-                    <a href="?page={{ law_lists2.next_page_number }}">[다음]</a>
-                    <a href="?page={{ law_lists2.paginator.num_pages }}">[맨뒤]</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists2.next_page_number }}" style="font-family: 'Do Hyeon', sans-serif;">다음</a>
+                    <a class="btn btn-info btn-xs" href="?page={{ law_lists2.paginator.num_pages }}" style="font-family: 'Do Hyeon', sans-serif;">맨뒤</a>
                 {% endif %}
             </span>
         </div>
             {% if user.is_authenticated %}
-                <a href="{% url 'parsed_data:ad_new' law.id %}"><input type="button" value="글작성"></a>
+                <a class="btn btn-success" href="{% url 'parsed_data:ad_new' law.id %}" style="font-family: 'Do Hyeon', sans-serif;">글작성</a>
             {% else %}
-                <a href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+                <a href="{% url 'accounts:login' %}" style="font-family: 'Do Hyeon', sans-serif;">로그인이 필요합니다</a>
             {% endif %}
     </div>
 
