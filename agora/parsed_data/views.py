@@ -325,6 +325,7 @@ def ra_disagree(request, regu_pk, rd_pk):
     }
     return render(request, 'parsed_data/ra_d_detail.html', context)
 
+
 ######################################################
 def like(request, gov_pk):
     gov = get_object_or_404(RawData, pk=gov_pk)
@@ -373,4 +374,60 @@ def unlike3(request, regu_pk):
         regu.unlike3_users.remove(request.user)
     else:
         regu.unlike3_users.add(request.user)
+
+
+###################  좋아요 함수 ##############
+@login_required()
+def likepg(request, gov_pk):
+    board = get_object_or_404(Pg_Board, pk=gov_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('parsed_data:gov_detail', gov_pk)
+
+@login_required()
+def likepg2(request, gov_pk):
+    board = get_object_or_404(Pg_Board2, pk=gov_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('parsed_data:gov_detail', gov_pk)
+
+@login_required()
+def likepa(request, assem_pk):
+    board = get_object_or_404(Pa_Board, pk=assem_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('parsed_data:assem_detail', assem_pk)
+
+@login_required()
+def likepa2(request, assem_pk):
+    board = get_object_or_404(Pa_Board2, pk=assem_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('parsed_data:assem_detail',assem_pk)
+
+@login_required()
+def likepar(request, regu_pk):
+    board = get_object_or_404(Par_Board, pk=regu_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+    return redirect('parsed_data:regu_detail',regu_pk)
+
+@login_required()
+def likepar2(request, regu_pk):
+    board = get_object_or_404(Par_Board2, pk=regu_pk)
+    if request.user in board.like_users.all(): # 이 게시글에 좋아요를 누른 유저 중 요청을 한 유저(request.user)가 있다면
+        board.like_users.remove(request.user)  # 목록에서 지워준다. (즉 좋아요를 취소 한다는 의미)
+    else:
+        board.like_users.add(request.user)
+
     return redirect('parsed_data:regu_detail', regu_pk)
