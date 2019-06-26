@@ -23,8 +23,8 @@ class UserCustomCreationForm(UserCreationForm):
                  'user_name',
                  'gender',
                  'email',
-                 'profilepic',
                  'job',
+                 'profilepic',
                  'age',
                  'text',
                  'date_of_birth')

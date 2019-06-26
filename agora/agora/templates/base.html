@@ -60,15 +60,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="{% url 'main:index' %}" class="navbar-left"><img src="{% static 'images/a2.png' %}" height="43px;" style="padding-top: 5px; padding-right: 20px;" prefix="True"></a>
+        <a href="/" class="navbar-left"><img src="{% static 'images/a2.png' %}" height="43px;" style="padding-top: 5px; padding-right: 20px;" prefix="True"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'parsed_data:index' %}">Home</a></li>
         <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/main/#about">About</a></li>
         <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/boards/">자유게시판</a></li>
-        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/chat/">토론장</a></li>
-        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="">완료입법</a></li>
         <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/parsed_data/">입법현황</a></li>
         <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/main/#contact">Contact</a></li>
         {% if user.is_authenticated %}
@@ -113,11 +111,9 @@
 </div>
 
 <div class="container">
-
     <h3 style="font-family: 'Do Hyeon', sans-serif;">안녕하세요! {{ user.username }} 님</h3>
     <a href="{% url 'accounts:edit' %}"><input class="btn btn-button" type="button"style="font-family: 'Do Hyeon', sans-serif;" value="회원정보 수정"></a>
     <a href="{% url 'accounts:change_password' %}"><input class="btn btn-button" type="button" style="font-family: 'Do Hyeon', sans-serif;" value="비밀번호 수정"></a>
-
 </div>
 <br>
 
