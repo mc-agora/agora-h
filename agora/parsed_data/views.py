@@ -4,8 +4,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import RawData, LawData, ReguData, Pg_Board, Pg_Comment, Pg_Board2, Pg_Comment2, Pa_Board, Pa_Board2, Pa_Comment, Pa_Comment2,Par_Board, Par_Board2, Par_Comment, Par_Comment2, NumData, LawNum,ReguNum
 from .forms import Pg_BoardForm, Pg_CommentForm, Pg_BoardForm2, Pg_CommentForm2, Pa_BoardForm, Pa_BoardForm2, Pa_CommentForm, Pa_CommentForm2, Par_BoardForm, Par_BoardForm2, Par_CommentForm, Par_CommentForm2
 
-#from boards.models import Board, Comment
-#from boards.forms import BoardForm, CommentForm
 
 from django.core.paginator import Paginator # paging 을 하기 위해 사용
 from django.contrib.auth.decorators import login_required
@@ -67,7 +65,8 @@ def ASSEM_REGU(request):
 @login_required()
 def GOV_DETAIL(request, gov_pk):
     raw = get_object_or_404(RawData, pk=gov_pk)
-    boards = Pg_Board.objects.all()[::-1]
+
+    boards = Pg_Board.objects.filter(rawdata=raw)[::-1]
 
     boardcount = Pg_Board.objects.count()
     board_list = Pg_Board.objects.all().order_by('id')
@@ -77,9 +76,10 @@ def GOV_DETAIL(request, gov_pk):
     raw_lists = paginator.get_page(page)
 
     boards2 = Pg_Board2.objects.all()[::-1]
-    boardcount2 = Pg_Board2.objects.count()
 
+    boardcount2 = Pg_Board2.objects.count()
     board_list2 = Pg_Board2.objects.all().order_by('id')
+
     paginator2 = Paginator(boards2, 5)
     page2 = request.GET.get('page')
     raw_lists2 = paginator2.get_page(page2)

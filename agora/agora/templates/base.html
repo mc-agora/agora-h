@@ -113,9 +113,11 @@
 </div>
 
 <div class="container">
+
     <h3 style="font-family: 'Do Hyeon', sans-serif;">안녕하세요! {{ user.username }} 님</h3>
     <a href="{% url 'accounts:edit' %}"><input class="btn btn-button" type="button"style="font-family: 'Do Hyeon', sans-serif;" value="회원정보 수정"></a>
     <a href="{% url 'accounts:change_password' %}"><input class="btn btn-button" type="button" style="font-family: 'Do Hyeon', sans-serif;" value="비밀번호 수정"></a>
+
 </div>
 <br>
 
