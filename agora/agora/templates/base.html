@@ -115,7 +115,8 @@
 <br><br><br><br>
 <div class="container">
         {% if user.is_authenticated %}
-            <h1>안녕하세요! {{ user.username }} 님</h1>
+            <h1>안녕하세요! {{ user.username }} 님</h1>1
+            <img src="{{ User_objects.profilepic.url}}" alt="나와라">
             <hr>
             <form action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
