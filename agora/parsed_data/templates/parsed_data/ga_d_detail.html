@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1 class="text-center" style="color:black">반대{{ board.pk }}번 게시판 글</h1>
+<h1 class="text-center" style="color:black">정부 입법현황 반대 {{ board.pk }}번 게시판 글</h1>
 <hr>
 
 <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
@@ -29,6 +29,10 @@
     </tbody>
 </table>
 <a href="/parsed_data/GOV/{{raw.id}}" class="btn btn-primary">뒤로</a>
+
+
+
+
 <!--
 <center>
 
@@ -46,6 +50,8 @@
 -->
 
 {% include 'boards/_profile.html' %}
+
+
 <!--
 <center>
     <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>

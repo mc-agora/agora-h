@@ -38,13 +38,14 @@
 
 <!-- ###################################### 찬  성  #######################################-->
 <div  style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:10px;width:450px;border:1px " >
+    <div class="twosteps" style="float:left; margin-right:10px;width:400px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; >
             <h3 class="text-center">찬성</h3>
             <thead>
                 <tr>
                     <th style=width:100px; class="text-center">번호</th>
-                    <th style=width:500px; class="text-center">제목</th>
+                    <th style=width:300px; class="text-center">제목</th>
+                    <th style=width:150px; class="text-center">좋아요</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +53,18 @@
                 <tr>
                     <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}">{{i.id}}</a></td>
                     <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/agree/{{ i.id }}">{{i.title}}</a></td>
+                    <td class="text-center">
+                            <div class="card-body">
+                                <a href="{% url 'parsed_data:likepa' i.pk %}" class="card-link">
+                                    {% if user in i.like_users.all %}
+                                        <i class="fas fa-heart fa-lg" style="color:crimson"></i>
+                                    {% else %}
+                                        <i class="far fa-heart fa-lg" style="color:black"></i>
+                                    {% endif %}
+                                </a>
+                                <p class="card-text">{{ i.like_users.count }} 명이 좋아합니다</p>
+                            </div>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -83,13 +96,14 @@
 
 <!-- ###################################### 반   대  #######################################-->
 
-    <div class="thwosteps" style="float:left; width:450px; border:1px ">
+    <div class="thwosteps" style="float:left; width:400px; border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk" border=0px solid;>
             <h3 class="text-center">반대</h3>
             <thead>
                 <tr>
                     <th style=width:100px; class="text-center">번호</th>
-                    <th style=width:500px; class="text-center">내용</th>
+                    <th style=width:300px; class="text-center">내용</th>
+                    <th style=width:150px; class="text-center">좋아요</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +111,18 @@
                 <tr>
                     <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}">{{k.id}}</a></td>
                     <td class="text-center"><a href="/parsed_data/ASSEM/{{ law.id }}/disagree/{{ k.id }}">{{k.title}}</a></td>
+                    <td class="text-center">
+                            <div class="card-body">
+                                <a href="{% url 'parsed_data:likepa2' k.pk %}" class="card-link">
+                                    {% if user in k.like_users.all %}
+                                        <i class="fas fa-heart fa-lg" style="color:crimson"></i>
+                                    {% else %}
+                                        <i class="far fa-heart fa-lg" style="color:black"></i>
+                                    {% endif %}
+                                </a>
+                                <p class="card-text">{{ k.like_users.count }} 명이 좋아합니다</p>
+                            </div>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>

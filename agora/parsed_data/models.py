@@ -61,13 +61,13 @@ class ReguNum(models.Model):
         return f'<{self.Link_Page_num}>'
 
 class Pg_Board(models.Model):
-    #raws = models.ForeignKey(RawData, on_delete=models.CASCADE, related_name='pg_board_raws')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_pg', blank=True)
 
 class Pg_Comment(models.Model):
     content = models.CharField(max_length=200)
@@ -77,13 +77,13 @@ class Pg_Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Pg_Board2(models.Model):
-    #raws = models.ForeignKey(RawData, on_delete=models.CASCADE, related_name='pg_board_raws2')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_pg2', blank=True)
 
 class Pg_Comment2(models.Model):
     content = models.CharField(max_length=200)
@@ -97,13 +97,13 @@ class Pg_Comment2(models.Model):
 ##########################################################################################
 
 class Pa_Board(models.Model):
-    #laws = models.ForeignKey(LawData, on_delete=models.CASCADE, related_name='pa_board_laws')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_pa', blank=True)
 
 class Pa_Comment(models.Model):
     content = models.CharField(max_length=200)
@@ -113,13 +113,13 @@ class Pa_Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Pa_Board2(models.Model):
-    #laws = models.ForeignKey(LawData, on_delete=models.CASCADE, related_name='pa_board_laws2')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_pa2', blank=True)
 
 class Pa_Comment2(models.Model):
     content = models.CharField(max_length=200)
@@ -133,13 +133,13 @@ class Pa_Comment2(models.Model):
 ##########################################################################################
 
 class Par_Board(models.Model):
-    #regu = models.ForeignKey(ReguData, on_delete=models.CASCADE, related_name='par_board')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_par', blank=True)
 
 class Par_Comment(models.Model):
     content = models.CharField(max_length=200)
@@ -149,13 +149,13 @@ class Par_Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Par_Board2(models.Model):
-    #regu = models.ForeignKey(ReguData, on_delete=models.CASCADE, related_name='par_board2')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(null=False, max_length=120)
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     file = models.FileField(null=True, upload_to='documents/%Y/%m/%d')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_boards_par2', blank=True)
 
 class Par_Comment2(models.Model):
     content = models.CharField(max_length=200)

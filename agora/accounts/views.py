@@ -8,13 +8,13 @@ from .forms import UserCustomCreationForm, UserCustomChangeForm
 
 def signup(request):
     if request.user.is_authenticated:             # 만약 로그인이 된 상태이면 바로 index 페이지로 보내버림
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
     if request.method == 'POST':
         form = UserCustomCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('boards:index')
+            return redirect('parsed_data:index')
     else:
         form = UserCustomCreationForm()
     context = {'form': form}
@@ -22,12 +22,12 @@ def signup(request):
 
 def login(request):
     if request.user.is_authenticated:             # 만약 로그인이 된 상태이면 바로 index 페이지로 보내버림
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get('next') or 'boards:index')
+            return redirect(request.GET.get('next') or 'parsed_data:index')
     else:
         form = AuthenticationForm()
     context ={'form': form}
@@ -36,23 +36,23 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth_logout(request)
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
     else:
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
 
 def delete(request):
     if request.method == 'POST':
         request.user.delete()
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
     else:
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
 
 def edit(request):
     if request.method == 'POST':
         form = UserCustomChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('boards:index')
+            return redirect('parsed_data:index')
     else:
         form = UserCustomChangeForm(instance=request.user)
     context = {'form': form}
@@ -65,7 +65,7 @@ def change_password(request):
         user = form.save()
         update_session_auth_hash(request, user)   # 비밀번호가 변경되어도 '나'라고 알림
         form.save()
-        return redirect('boards:index')
+        return redirect('parsed_data:index')
     else:
         form = PasswordChangeForm(request.user)
     context = {'form': form}

@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1 class="text-center" style="color:black">{{ board.pk }}번 게시판 글</h1>
+<h1 class="text-center" style="color:black">정부 입법현황 찬성 {{ board.pk }}번 게시판 글</h1>
 <hr>
 
 <table class="table table-hover" bgcolor="Cornsilk" border=0px solid; style="table-layout: fixed">
@@ -30,52 +30,58 @@
 </table>
 <a href="/parsed_data/GOV/{{raw.id}}" class="btn btn-primary">뒤로</a>
 
-<!--
-<center>
 
-<form action="{% url 'boards:delete' board.pk %}" method="POST">
-    {% csrf_token %}
-    <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>-->
-    <!-- 글을 쓴 유저만 수정과 삭제가 가능하도록 조건을 걺  -->
-<!--
-    {% if user == board.user %}
-        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>
-        <input type="submit" value="삭제">
-    {% endif %}
-</form>
-</center>
--->
+
+<!--<center>-->
+
+<!--<form action="{% url 'boards:delete' board.pk %}" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    <a href="{% url 'boards:index' %}"><input type="button" value="메인"></a>-->
+<!--    &lt;!&ndash; 글을 쓴 유저만 수정과 삭제가 가능하도록 조건을 걺  &ndash;&gt;-->
+
+<!--    {% if user == board.user %}-->
+<!--        <a href="{% url 'boards:edit' board.pk %}"><input type="button" value="수정"></a>-->
+<!--        <input type="submit" value="삭제">-->
+<!--    {% endif %}-->
+<!--</form>-->
+<!--</center>-->
+
+
 
 {% include 'boards/_profile.html' %}
-<!--
-<center>
-    <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>
-    {% if user.is_authenticated %}
-        {% for comment in comments %}
-            <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>
-            {% if comment.user == request.user %}
-                <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>
-                <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="댓글삭제">
-                </form>
-            {% endif %}
-        {% empty %}
-            <p>댓글이 없습니다. </p>
-        {% endfor %}
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인이 필요합니다.</a>
-    {% endif %}
-
-</center>
 
 
-<center>
-    <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
-        {% csrf_token %}
-        {{ comment_form.as_p }}
-        <input type="submit" value="댓글작성">
-    </form>
-</center>
--->
+
+
+<!--<center>-->
+<!--    <p><strong>댓글 목록 | 현재 댓글 갯수: {{ comments|length }} 개</strong></p>-->
+<!--    {% if user.is_authenticated %}-->
+<!--        {% for comment in comments %}-->
+<!--            <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>-->
+<!--            {% if comment.user == request.user %}-->
+<!--                <a href="{% url 'boards:comments_edit' board.pk comment.pk %}"><input type="button" value="댓글수정"></a>-->
+<!--                <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">-->
+<!--                    {% csrf_token %}-->
+<!--                    <input type="submit" value="댓글삭제">-->
+<!--                </form>-->
+<!--            {% endif %}-->
+<!--        {% empty %}-->
+<!--            <p>댓글이 없습니다. </p>-->
+<!--        {% endfor %}-->
+<!--    {% else %}-->
+<!--        <a href="{% url 'accounts:login' %}">로그인이 필요합니다.</a>-->
+<!--    {% endif %}-->
+
+<!--</center>-->
+
+
+<!--<center>-->
+<!--    <form action="{% url 'boards:comments_create' board.pk %}" method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        {{ comment_form.as_p }}-->
+<!--        <input type="submit" value="댓글작성">-->
+<!--    </form>-->
+<!--</center>-->
+
+
 {% endblock %}

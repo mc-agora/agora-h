@@ -28,6 +28,13 @@ urlpatterns = [
     path('ASSEM-REGU/<int:regu_pk>/agree/<int:ra_pk>/', views.ra_agree, name='ra_agree'),
     path('ASSEM-REGU/<int:regu_pk>/rd_new/', views.rd_new, name='rd_new'),
     path('ASSEM-REGU/<int:regu_pk>/disagree/<int:rd_pk>/', views.ra_disagree, name='ra_disagree'),
+    ##############################  like  #############################################
+    path('GOV/<int:gov_pk>/likepg/', views.likepg, name='likepg'),
+    path('GOV/<int:gov_pk>/likepg2/', views.likepg2, name='likepg2'),
+    path('ASSEM/<int:assem_pk>/likepa/', views.likepa, name='likepa'),
+    path('ASSEM/<int:assem_pk>/likepa2/', views.likepa2, name='likepa2'),
+    path('ASSEM-REGU/<int:regu_pk>/likepar/', views.likepar, name='likepar'),
+    path('ASSEM-REGU/<int:regu_pk>/likepar2/', views.likepar2, name='likepar2'),
 
 ]
 
