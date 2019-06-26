@@ -5,13 +5,12 @@
 <h1 class="text-center" style="color:black">정부 입법현황</h1>
 
 <div style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:20px;width:780px;border:1px " >
+    <div class="twosteps" style="float:left; margin-right:20px;width:700px;border:1px " >
         <table class="table table-hover" bgcolor="Cornsilk ">
             <thead>
                 <tr>
                     <th class="text-center">글번호</th>
                     <th class="text-center">법령</th>
-                    <th class="text-center">상태</th>
 
                 </tr>
             </thead>
@@ -21,7 +20,7 @@
                     <tr>
                         <td class="text-center">{{i.id}}</td>
                         <td class="text-center"><a href="/parsed_data/GOV/{{ i.id }}/">{{i.raw_name}}</a></td>
-                        <td class="text-center">{{i.raw_status}}</td>
+
             {%endfor%}
                      </tr>
                 </tbody>

@@ -5,21 +5,19 @@
 <h1 class="text-center" style="color:black">국회 입법현황</h1>
 
 <div style="width:910px; margin:5 auto;">
-    <div class="twosteps" style="float:left; margin-right:20px;width:780px;border:1px ">
+    <div class="twosteps" style="float:left; margin-right:20px;width:700px;border:1px ">
         <table class="table table-hover" bgcolor="Cornsilk ">
             <thead>
                 <tr>
-                    <th class="text-center">의안명</th>
-                    <th class="text-center">제안자</th>
                     <th class="text-center">의안번호</th>
+                    <th class="text-center">의안명</th>
                 </tr>
             </thead>
             {%for i in Laws_lists%}
                 <tbody>
                     <tr>
-                        <td class="text-center"><a href="/parsed_data/ASSEM/{{ i.id }}/">{{i.law_name}}</a></td>
-                        <td class="text-center">{{i.law_people}}</td>
                         <td class="text-center">{{i.law_doc_num}}</td>
+                        <td class="text-center"><a href="/parsed_data/ASSEM/{{ i.id }}/">{{i.law_name}}</a></td>
                     </tr>
                 </tbody>
                 {% endfor %}

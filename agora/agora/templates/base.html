@@ -85,15 +85,11 @@
           <a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> login</a>
       {% endif %}
       </ul>
-
-
-
     </div>
   </div>
 </nav>
 
 <div class="container-fluid text-center">
-
   <div class="row content" >
     <div class="col-sm-2 sidenav" >
       <p><a href="{% url 'parsed_data:GOV' %}">정부입법현황</a></p>
@@ -103,11 +99,8 @@
     <div class="col-sm-8 text-left" style="background-color: #f1f1f1;">
             {%block body%}
             {%endblock%}
-
     </div>
-
   </div>
-
 </div>
 
 
