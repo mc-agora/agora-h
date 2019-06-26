@@ -91,29 +91,32 @@ def index():
     return dict_objs
 
 def pagenum():
-    html = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex=1').text
+    html = requests.get(
+        f'https://opinion.lawmaking.go.kr/gcom/sts/better?edNsmPtYdFmt=2019.+6.+24.&srchSetYn=Y&stNsmPtYdFmt=2016.+5.+30.&pageIndex=1').text
     soup = bs4.BeautifulSoup(html, "html.parser")
     ranks = soup.select('.tbl_typeA tr td')
     page_num = soup.select('.tbl_top_area')
-    page_num2 = soup.select('.tbl_typeA tr td a')
+    page_num2 = soup.select('.tbl_typeA tbody tr td a')
+
     data = []
     for i in range(len(ranks)):
         data.append(cleanText(ranks[i].text))
     groups = []
     for group in chunker(data, 6):
         groups.append(group)
-    total_page = int(cleanText(str(page_num[0])[236:239]))
+    total_page = int(cleanText(str(page_num[0])[94:97]))
 
     page_num_num = []  # 입법 세부 페이지 번호
     dict_objs2 = []
 
     for num in range(1, 5):
-        html2 = requests.get(f'https://opinion.lawmaking.go.kr/gcom/govLm?pageIndex={num}').text
+        html2 = requests.get(
+            f'https://opinion.lawmaking.go.kr/gcom/sts/better?edNsmPtYdFmt=2019.+6.+24.&srchSetYn=Y&stNsmPtYdFmt=2016.+5.+30.&pageIndex={num}').text
         soup2 = bs4.BeautifulSoup(html2, "html.parser")
-        page_num2 = soup2.select('.tbl_typeA tr td a')
+        page_num2 = soup2.select('.tbl_typeA tbody tr td a')
 
         for i in range(len(page_num2)):
-            page_num_num.append(str(page_num2[i])[36:49])
+            page_num_num.append(str(page_num2[i])[34:41])
         Link_Page_num = page_num_num[0::2]
 
         context2 = ['Link_Page_num']
