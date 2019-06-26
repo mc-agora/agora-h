@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="{% static 'boards/favicon/favicon.ico' %}" type="image/x-icon">
   <link rel="icon" href="{% static 'boards/favicon/favicon.ico' %}" type="image/x-icon">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
@@ -46,6 +47,7 @@
       }
       .row.content {height:auto;}
     }
+
   </style>
 </head>
 <body>
@@ -62,28 +64,35 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'parsed_data:index' %}">Home</a></li>
-        <li><a href="/main/#about">About</a></li>
-        <li><a href="/boards/">자유게시판</a></li>
-        <li><a href="/chat/">토론장</a></li>
-        <li><a href="">완료입법</a></li>
-        <li><a href="/parsed_data/">입법현황</a></li>
-        <li><a href="/main/#contact">Contact</a></li>
+        <li class="active"><a style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'parsed_data:index' %}">Home</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/main/#about">About</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/boards/">자유게시판</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/chat/">토론장</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="">완료입법</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/parsed_data/">입법현황</a></li>
+        <li><a style="font-family: 'Do Hyeon', sans-serif;" href="/main/#contact">Contact</a></li>
         {% if user.is_authenticated %}
-            <li><a href="{% url 'mypage:userprofile' user.pk %}">마이페이지</a></li>
+            <li><a style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'mypage:userprofile' user.pk %}">마이페이지</a></li>
         {% endif %}
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-      {% if user.is_authenticated %}
-          <form action="{% url 'accounts:logout' %}" method="post">
-              {% csrf_token %}
-            <span class="glyphicon glyphicon-log-out"></span><input type="submit" value="logout">
-          </form>
+          {% if user.is_authenticated %}
+            <form action="{% url 'accounts:logout' %}" method="post" style="float:left; padding-top:10px;padding-right:10px;font-family: 'Do Hyeon', sans-serif;">
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="로그아웃">
+            </form>
 
-      {% else %}
-          <a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> login</a>
-      {% endif %}
+            <form action="{% url 'accounts:delete' %}" method="post" style="float:left;padding-top:10px;padding-right:10px;font-family: 'Do Hyeon', sans-serif;">
+                {% csrf_token %}
+                <input class="btn btn-danger" type="submit" value="회원탈퇴">
+            </form>
+
+          {% else %}
+            <a class="btn btn-primary" href="{% url 'accounts:login' %}" style="padding-right:10px;font-family: 'Do Hyeon', sans-serif;">[로그인]</a>
+            <a class="btn btn-success" href="{% url 'accounts:signup' %}" style="padding-right:10px;font-family: 'Do Hyeon', sans-serif;">[회원가입]</a>
+          {% endif %}
+
       </ul>
     </div>
   </div>
@@ -92,9 +101,9 @@
 <div class="container-fluid text-center">
   <div class="row content" >
     <div class="col-sm-2 sidenav" >
-      <p><a href="{% url 'parsed_data:GOV' %}">정부입법현황</a></p>
-      <p><a href="{% url 'parsed_data:ASSEM' %}">국회입법현황</a></p>
-      <p><a href="{% url 'parsed_data:ASSEM_REGU' %}">국회입법현황(규제관련)</a></p>
+      <p><a class="btn btn-warning btn-block" style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'parsed_data:GOV' %}">정부입법현황</a></p>
+      <p><a class="btn btn-success btn-block" style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'parsed_data:ASSEM' %}">국회입법현황</a></p>
+      <p><a class="btn btn-primary btn-block" style="font-family: 'Do Hyeon', sans-serif;" href="{% url 'parsed_data:ASSEM_REGU' %}">국회입법현황(규제관련)</a></p>
     </div>
     <div class="col-sm-8 text-left" style="background-color: #f1f1f1;">
             {%block body%}
@@ -103,32 +112,14 @@
   </div>
 </div>
 
-
-
-<br><br><br><br>
 <div class="container">
-        {% if user.is_authenticated %}
-            <h1>안녕하세요! {{ user.username }} 님</h1>
-            <hr>
-            <form action="{% url 'accounts:logout' %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="로그아웃">
-            </form>
 
-            <form action="{% url 'accounts:delete' %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="회원탈퇴">
-            </form>
+    <h3 style="font-family: 'Do Hyeon', sans-serif;">안녕하세요! {{ user.username }} 님</h3>
+    <a href="{% url 'accounts:edit' %}"><input class="btn btn-button" type="button"style="font-family: 'Do Hyeon', sans-serif;" value="회원정보 수정"></a>
+    <a href="{% url 'accounts:change_password' %}"><input class="btn btn-button" type="button" style="font-family: 'Do Hyeon', sans-serif;" value="비밀번호 수정"></a>
 
-
-        <a href="{% url 'accounts:edit' %}"><input type="button" value="회원정보 수정"></a>
-        <a href="{% url 'accounts:change_password' %}"><input type="button" value="비밀번호 수정"></a>
-        {% else %}
-            <a href="{% url 'accounts:login' %}">[로그인]</a>
-            <a href="{% url 'accounts:signup' %}">[회원가입]</a>
-        {% endif %}
 </div>
-<br><br><br><br>
+<br>
 
 
 <footer class="container-fluid text-center">

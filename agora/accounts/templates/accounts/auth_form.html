@@ -12,10 +12,9 @@
     <h1>비밀번호 변경</h1>
 {% endif %}
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
-
     {% buttons %}
         <button type="submit" class="btn btn-primary">Submit</button>
     {% endbuttons %}

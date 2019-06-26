@@ -1,18 +1,18 @@
 <div class="jumbotron text-center text-white bg-dark">
-   <p class="lead mb-1">작성자 정보</p>
-   <h2 class="display">{{ board.user }}</h2>
+   <p class="lead mb-1" style="font-family: 'Do Hyeon', sans-serif;">작성자 정보</p>
+   <h2 class="display" style="font-family: 'Do Hyeon', sans-serif;">{{ board.user }}</h2>
    <hr class="border-white">
-   <p class="lead">
+   <p class="lead" style="font-family: 'Do Hyeon', sans-serif;">
        팔로잉 : {{ person.followings.all | length }}
        팔로워 : {{ person.followers.all | length }}
    </p>
    {% if user != person %}
        {% if user in person.followers.all %}
    <!-- '웹 접근성' :  a 태그의 'role'속성은 시각장애인들을 위해 스크린리더가 읽어주는 속성이다. img의 alt 속성과 비슷? -->
-           <a class='btn btn-primary' href="{% url 'boards:follow' board.pk person.pk %}" role="button">Unfollow</a>
+           <a class='btn btn-primary' href="{% url 'boards:follow' board.pk person.pk %}" role="button" style="font-family: 'Do Hyeon', sans-serif;">Unfollow</a>
        {% else %}
-           <a class='btn btn-primary' href="{% url 'boards:follow' board.pk person.pk %}" role="button">Follow</a>
+           <a class='btn btn-primary' href="{% url 'boards:follow' board.pk person.pk %}" role="button" style="font-family: 'Do Hyeon', sans-serif;">Follow</a>
        {% endif %}
    {% endif %}
-    <a class="btn btn-primary" href="{% url 'mypage:userprofile' person.pk %}" role="button">유저페이지</a>
+    <a class="btn btn-primary" href="{% url 'mypage:userprofile' person.pk %}" role="button" style="font-family: 'Do Hyeon', sans-serif;">유저페이지</a>
 </div>
