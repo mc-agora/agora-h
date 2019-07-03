@@ -336,7 +336,7 @@ def like(request, gov_pk):
                 gov.like_users.remove(request.user)
             else:
                 gov.like_users.add(request.user)
-                # embed()
+
             return redirect('parsed_data:gov_detail', gov_pk)
         else:
             return redirect('parsed_data:gov_detail', gov_pk)

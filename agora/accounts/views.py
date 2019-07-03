@@ -4,14 +4,14 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash # 비밀번호를 변경해도 로그인 상태 유지
 from .forms import UserCustomCreationForm, UserCustomChangeForm
-from IPython import embed
+# from IPython import embed
 
 def signup(request):
     if request.user.is_authenticated:             # 만약 로그인이 된 상태이면 바로 index 페이지로 보내버림
         return redirect('parsed_data:index')
     if request.method == 'POST':
         form = UserCustomCreationForm(request.POST, request.FILES)
-        #embed()
+
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
