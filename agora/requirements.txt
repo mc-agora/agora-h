@@ -39,8 +39,10 @@ psycopg2==2.8.3
 pycparser==2.19
 Pygments==2.4.2
 PyHamcrest==1.9.0
+pypiwin32==223
 python-decouple==3.1
 pytz==2019.1
+pywin32==224
 requests==2.22.0
 six==1.12.0
 soupsieve==1.9.2
@@ -51,4 +53,5 @@ txaio==18.8.1
 urllib3==1.25.3
 wcwidth==0.1.7
 whitenoise==4.1.2
+wincertstore==0.2
 zope.interface==4.6.0
