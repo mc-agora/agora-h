@@ -63,15 +63,14 @@ class User(AbstractBaseUser):
 
     username = models.CharField(error_messages={'unique': '이미 존재하는 아이디입니다.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, verbose_name='아이디')
     user_name = models.CharField(max_length=20, blank=False, verbose_name='성명')
-
-    profilepic = models.ImageField(upload_to='pic_folder/', verbose_name='프로필 이미지')
+    image = models.ImageField(upload_to='pic_folder/', verbose_name='프로필 이미지')
     job = models.PositiveSmallIntegerField(choices=JOB_CHOICES, null=True, blank=True, verbose_name='영역')
-    age = models.PositiveIntegerField(default=20, validators=[MinValueValidator(18), MaxValueValidator(100)], blank=False, verbose_name='나이')
     gender = models.CharField(max_length=2, choices=GENDER, default=Male, verbose_name='성별')
-    followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
     text = models.TextField(blank=False, null=False, verbose_name='자기소개')
-
     date_of_birth = models.DateField(null=False, blank=False, verbose_name='생년월일')
+
+    followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

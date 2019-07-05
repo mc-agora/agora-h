@@ -8,10 +8,10 @@ from django.contrib.auth import get_user_model
 def userprofile(request, user_pk):
     person = get_object_or_404(get_user_model(), pk=user_pk)
 
-    if not person.profilepic:
+    if not person.image:
         pic_url = ""
     else:
-        pic_url = person.profilepic.url
+        pic_url = person.image.url
     context = {
         'id': person.username,
         'name': person.user_name,
