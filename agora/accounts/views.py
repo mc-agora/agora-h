@@ -26,7 +26,6 @@ def login(request):
         return redirect('parsed_data:index')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
-        embed()
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect(request.GET.get('next') or 'parsed_data:index')

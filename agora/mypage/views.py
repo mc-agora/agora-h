@@ -17,7 +17,6 @@ def userprofile(request, user_pk):
         'name': person.user_name,
         'date_of_birth': person.date_of_birth,
         'job': person.job,
-        'age': person.age,
         'gender': person.gender,
         'pic': pic_url,
         'text': person.text
