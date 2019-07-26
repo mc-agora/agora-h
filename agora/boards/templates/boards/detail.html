@@ -47,6 +47,9 @@
         <input type="submit" value="삭제" style="font-family: 'Do Hyeon', sans-serif;">
     {% endif %}
 </form>
+
+    <br>
+
 </center>
 
 {% include 'boards/_profile.html' %}
@@ -57,9 +60,9 @@
         {% for comment in comments %}
             <p><b><a href="{% url 'mypage:userprofile' comment.user.pk %}" style="font-family: 'Do Hyeon', sans-serif;">{{ comment.user }}</a> 님의 댓글 : {{ comment.content }}</b></p>
             {% if comment.user == request.user %}
-                <a href="{% url 'boards:comments_edit' board.pk comment.pk %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="댓글수정"></a>
                 <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
                     {% csrf_token %}
+                    <a href="{% url 'boards:comments_edit' board.pk comment.pk %}" style="font-family: 'Do Hyeon', sans-serif;"><input type="button" value="댓글수정"></a>
                     <input type="submit" value="댓글삭제" style="font-family: 'Do Hyeon', sans-serif;">
                 </form>
             {% endif %}
@@ -72,6 +75,7 @@
 
 </center>
 
+<br>
 
 <center>
     <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
@@ -80,5 +84,7 @@
         <input type="submit" value="댓글작성" style="font-family: 'Do Hyeon', sans-serif;">
     </form>
 </center>
+
+<br>
 
 {% endblock %}
