@@ -33,7 +33,7 @@ jedi==0.14.0
 msgpack==0.6.1
 parso==0.5.0
 pickleshare==0.7.5
-Pillow==6.0.0
+Pillow==6.2.1
 prompt-toolkit==2.0.9
 psycopg2==2.8.3
 pycparser==2.19
@@ -48,7 +48,7 @@ six==1.12.0
 soupsieve==1.9.2
 sqlparse==0.3.0
 traitlets==4.3.2
-Twisted==19.7.0
+Twisted==19.2.1
 txaio==18.8.1
 urllib3==1.25.3
 wcwidth==0.1.7
