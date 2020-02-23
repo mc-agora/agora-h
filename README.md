@@ -10,10 +10,14 @@ Agora는 약 1개월 동안 진행한 [4차산업 선도인력 - 클라우드 �
 
 
 
+
+
 ## 프로젝트 기획 배경 및 목표
 
 * 현실의 상황이 국가 정책, 입법의 방향성에 반영되지 않아 사람들의 불만이 많음.
 * 정치가(국회의원)의 입법/정책 수립행위에 전문가(교수/현업)들과 민간(일반인)의 의견반영 플랫폼을 만들기.
+
+
 
 
 
@@ -23,13 +27,19 @@ Agora는 약 1개월 동안 진행한 [4차산업 선도인력 - 클라우드 �
 
 
 
+
+
 ## URL : https://multicam-agora.herokuapp.com/main/
+
+
 
 
 
 ## 로드맵
 
 ![image](https://user-images.githubusercontent.com/48499094/74917648-2c21af80-540b-11ea-8f56-b0bfd0a20366.png)
+
+
 
 
 
@@ -41,11 +51,15 @@ Github 를 통해 작업을 했습니다.
 
 
 
+
+
 ## 일정 및 이슈 관리
 
 * 프로젝트 진행 일정은 Trello를 통해 관리했습니다.
 
 ![trello](https://user-images.githubusercontent.com/48499094/74925777-2da5a480-5418-11ea-8fc6-c5472705c262.PNG)
+
+
 
 
 
@@ -55,11 +69,15 @@ Github 를 통해 작업을 했습니다.
 
 
 
+
+
 ## 구성원
 
 * 홍기석 : [Github](https://github.com/GiSeok-Hong), [Velog](https://velog.io/@hih0327)
 * 전인혁 : [Github](https://github.com/jeoninhyuk)
 * 김동섭 : [Github](https://github.com/kdongxie)
+
+
 
 
 
