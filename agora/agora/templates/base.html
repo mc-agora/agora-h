@@ -20,7 +20,7 @@
     }
 
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+    .row.content {height: 600px}
 
     /* Set gray background color and 100% height */
     .sidenav {
@@ -107,18 +107,15 @@
             {%block body%}
             {%endblock%}
     </div>
+    {% if user.is_authenticated %}
+    <div class="user-info">
+      <h3 style="font-family: 'Do Hyeon', sans-serif;">안녕하세요! {{ user.username }} 님</h3>
+      <a href="{% url 'accounts:edit' %}"><input class="btn btn-button" type="button"style="font-family: 'Do Hyeon', sans-serif;" value="회원정보 수정"></a>
+      <a href="{% url 'accounts:change_password' %}"><input class="btn btn-button" type="button" style="font-family: 'Do Hyeon', sans-serif;" value="비밀번호 수정"></a>
+    </div>
+    {% endif %}
   </div>
 </div>
-
-{% if user.is_authenticated %}
-<div class="container">
-    <h3 style="font-family: 'Do Hyeon', sans-serif;">안녕하세요! {{ user.username }} 님</h3>
-    <a href="{% url 'accounts:edit' %}"><input class="btn btn-button" type="button"style="font-family: 'Do Hyeon', sans-serif;" value="회원정보 수정"></a>
-    <a href="{% url 'accounts:change_password' %}"><input class="btn btn-button" type="button" style="font-family: 'Do Hyeon', sans-serif;" value="비밀번호 수정"></a>
-</div>
-{% endif %}
-<br>
-
 
 <footer class="container-fluid text-center">
   <p>AGORA Copyright.</p>
