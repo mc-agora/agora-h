@@ -29,7 +29,7 @@ Agora는 약 1개월 동안 진행한 [4차산업 선도인력 - 클라우드 �
 
 
 
-## URL : https://multicam-agora.herokuapp.com/main/
+## URL : https://agora-project.herokuapp.com/
 
 
 
